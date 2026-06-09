@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NeuroNauts Reading Room</title>
-<meta name="description" content="Reading room for the NeuroNauts Scholars Program: curated papers and a field glossary.">
+<meta name="description" content="Reading room for the NeuroNauts Scholars Program: papers, the history of Alzheimer's research, brain anatomy, and a glossary.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -265,6 +265,76 @@ footer{border-top:1px solid var(--line);padding:22px;text-align:center;
   border:1px solid rgba(94,234,212,.3);background:rgba(94,234,212,.1);
   padding:7px 13px;border-radius:99px;white-space:nowrap;margin-top:4px}
 
+/* ---------- library header ---------- */
+.lib-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.read-count{flex:none;color:var(--cyan);font-size:.72rem;letter-spacing:.06em;
+  border:1px solid rgba(94,234,212,.3);background:rgba(94,234,212,.1);
+  padding:7px 13px;border-radius:99px;white-space:nowrap;margin-top:4px}
+
+/* ---------- TIMELINE (history) ---------- */
+.timeline{position:relative;margin-top:8px;padding-left:6px}
+.timeline::before{content:"";position:absolute;left:13px;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(180deg,var(--cyan),var(--violet),var(--pink))}
+.tl-item{position:relative;display:grid;grid-template-columns:34px 1fr;gap:14px;margin-bottom:14px}
+.tl-marker{position:relative;display:flex;justify-content:center}
+.tl-dot{width:14px;height:14px;border-radius:50%;margin-top:18px;background:var(--cyan);
+  box-shadow:0 0 0 4px rgba(10,14,35,1), 0 0 14px var(--cyan);z-index:1}
+.tl-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+  padding:14px 18px;transition:.18s}
+.tl-card:hover{border-color:var(--line-bright);transform:translateX(2px)}
+.tl-year{color:var(--cyan-2);font-size:.82rem;letter-spacing:.05em}
+.tl-title{font-family:"Unbounded",sans-serif;font-size:1rem;margin:3px 0 7px;line-height:1.3}
+.tl-text{font-size:.9rem;color:var(--text-dim)}
+.era-tag{display:inline-block;font-family:"Space Mono",monospace;font-size:.58rem;letter-spacing:.12em;
+  text-transform:uppercase;padding:2px 8px;border-radius:99px;vertical-align:middle;margin-left:6px;
+  color:var(--text);border:1px solid var(--line-bright);background:rgba(255,255,255,.04)}
+/* era colors */
+.discovery{--c:#5eead4} .pathology{--c:#a78bfa} .clinical{--c:#9be7ff} .biochem{--c:#f472b6}
+.molecules{--c:#fbbf24} .genetics{--c:#7dd3fc} .theory{--c:#c4b5fd} .treatment{--c:#34d399}
+.imaging{--c:#fca5a5} .biomarker{--c:#5eead4}
+.tl-dot.discovery,.tl-dot.pathology,.tl-dot.clinical,.tl-dot.biochem,.tl-dot.molecules,
+.tl-dot.genetics,.tl-dot.theory,.tl-dot.treatment,.tl-dot.imaging,.tl-dot.biomarker{background:var(--c);box-shadow:0 0 0 4px rgba(10,14,35,1),0 0 14px var(--c)}
+.era-tag.discovery,.era-tag.pathology,.era-tag.clinical,.era-tag.biochem,.era-tag.molecules,
+.era-tag.genetics,.era-tag.theory,.era-tag.treatment,.era-tag.imaging,.era-tag.biomarker{color:var(--c);border-color:var(--c);background:rgba(255,255,255,.03)}
+
+/* ---------- BRAIN ANATOMY ---------- */
+.brain-wrap{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+  padding:14px 14px 8px;margin-bottom:22px}
+#brain-svg{width:100%;height:auto;display:block}
+#brain-svg .reg{transition:fill .3s, stroke .3s;cursor:default}
+#brain-svg .neo{fill:rgba(167,139,250,.12);stroke:rgba(167,139,250,.5);stroke-width:1.6}
+#brain-svg .vent{fill:rgba(155,231,255,.18);stroke:rgba(155,231,255,.6);stroke-width:1.3}
+#brain-svg .hip{fill:rgba(94,234,212,.5);stroke:var(--cyan);stroke-width:1.4}
+#brain-svg .amy{fill:rgba(244,114,182,.5);stroke:var(--pink);stroke-width:1.3}
+#brain-svg .ent{fill:rgba(251,191,36,.5);stroke:var(--amber);stroke-width:1.3}
+#brain-svg .bas{fill:rgba(52,211,153,.6);stroke:#34d399;stroke-width:1.3}
+#brain-svg .loc{fill:rgba(252,165,165,.7);stroke:#fca5a5;stroke-width:1.3}
+#brain-svg .leaders line{stroke:rgba(159,179,230,.4);stroke-width:1;stroke-dasharray:3 3}
+#brain-svg .lbls text{font-family:"Space Mono",monospace;font-size:12px;fill:var(--text)}
+#brain-svg .lbls text.faint{fill:var(--text-faint);font-size:11px}
+#brain-svg .reg.flash{animation:regflash 1.5s ease}
+@keyframes regflash{
+  0%{filter:none}
+  20%{filter:drop-shadow(0 0 10px var(--cyan));stroke:#fff}
+  100%{filter:none}
+}
+.anat-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.anat-card{text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:14px;
+  padding:15px 16px;cursor:pointer;color:var(--text);font-family:inherit;transition:.18s}
+.anat-card:hover{border-color:var(--line-bright);transform:translateY(-2px)}
+.anat-card.active{border-color:var(--cyan);box-shadow:0 0 26px -10px var(--cyan)}
+.anat-name{font-family:"Unbounded",sans-serif;font-size:.95rem;margin-bottom:8px}
+.anat-tag{display:inline-block;font-family:"Space Mono",monospace;font-size:.56rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--cyan);border:1px solid rgba(94,234,212,.3);
+  background:rgba(94,234,212,.1);padding:2px 7px;border-radius:99px;margin-left:4px;vertical-align:middle}
+.anat-role{font-size:.86rem;color:var(--text-dim);margin-bottom:8px}
+.anat-ad{font-size:.86rem;color:var(--text)}
+.anat-ad b{color:var(--amber)}
+.brain-cap{text-align:center;color:var(--text-faint);font-size:.66rem;letter-spacing:.05em;margin:4px 0 2px}
+
+/* ---------- GLOSSARY GROUPS ---------- */
+.gloss-group{margin-bottom:24px}
+
 </style>
 </head>
 <body>
@@ -278,7 +348,6 @@ footer{border-top:1px solid var(--line);padding:22px;text-align:center;
     <div class="kicker">Reading Room</div>
     <div class="brand"><span class="neuro">Neuro</span><span class="nauts">Nauts</span></div>
     <div class="tagline">Scholars Program &middot; <span id="brand-cohort"></span></div>
-
     <div class="field">
       <label>Who is logging in?</label>
       <div class="who" id="who"></div>
@@ -305,6 +374,8 @@ footer{border-top:1px solid var(--line);padding:22px;text-align:center;
     </div>
     <nav class="tabs">
       <button data-view="library" class="active">Paper Library</button>
+      <button data-view="history">History of AD</button>
+      <button data-view="anatomy">Brain Anatomy</button>
       <button data-view="glossary">Glossary</button>
     </nav>
   </header>
@@ -319,18 +390,79 @@ footer{border-top:1px solid var(--line);padding:22px;text-align:center;
         </div>
         <span class="read-count mono" id="read-count">0 read</span>
       </div>
-      <div class="lib-controls">
-        <input type="text" id="lib-search" class="search" placeholder="Search titles and topics...">
-      </div>
+      <div class="lib-controls"><input type="text" id="lib-search" class="search" placeholder="Search titles and topics..."></div>
       <div class="filters" id="filters"></div>
       <div id="library"></div>
+    </section>
+
+    <!-- HISTORY -->
+    <section id="view-history" class="view">
+      <h2 class="section">A short history of Alzheimer's disease</h2>
+      <p class="sub">From one patient in 1906 to a blood test in 2025. Notice how the neuropathology came first, the molecules next, and the biomarkers and drugs only recently.</p>
+      <div class="timeline" id="history"></div>
+    </section>
+
+    <!-- ANATOMY -->
+    <section id="view-anatomy" class="view">
+      <h2 class="section">The brain in Alzheimer's</h2>
+      <p class="sub">A simplified side view. Tap a region below to highlight roughly where it sits. The disease does not strike everywhere at once; it follows a path.</p>
+      <div class="brain-wrap">
+        <svg id="brain-svg" viewBox="0 0 720 470" role="img" aria-label="Simplified diagram of the brain">
+          <!-- cerebellum -->
+          <ellipse cx="520" cy="322" rx="52" ry="42" fill="rgba(120,150,230,.10)" stroke="rgba(159,179,230,.35)" stroke-width="1.5"/>
+          <path d="M474,300 C500,312 540,312 566,300 M470,322 C500,336 540,336 570,322 M476,344 C502,356 538,356 564,344" fill="none" stroke="rgba(159,179,230,.3)" stroke-width="1"/>
+          <!-- brainstem -->
+          <path d="M404,298 C402,345 408,394 418,432 C426,394 432,345 432,298 Z" fill="rgba(120,150,230,.10)" stroke="rgba(159,179,230,.35)" stroke-width="1.5"/>
+          <!-- cerebrum / neocortex -->
+          <path data-r="r-neocortex" class="reg neo" d="M120,215 C100,150 165,95 245,86 C320,78 380,76 445,92 C512,108 545,150 543,192 C541,228 516,250 492,258 C455,270 430,262 414,266 C424,298 406,330 352,333 C296,336 248,330 214,317 C168,300 132,272 120,215 Z"/>
+          <!-- sulci texture -->
+          <path d="M180,150 C220,140 250,160 245,190 M300,110 C320,150 300,175 330,195 M390,110 C400,150 380,180 410,200 M460,140 C455,175 480,190 470,215 M210,235 C250,225 270,245 300,238" fill="none" stroke="rgba(159,179,230,.22)" stroke-width="1.4"/>
+          <!-- ventricles -->
+          <path data-r="r-ventricle" class="reg vent" d="M352,150 C372,140 394,151 397,173 C400,192 384,198 372,189 C359,198 343,191 346,170 C347,161 350,154 352,150 Z"/>
+          <!-- hippocampus -->
+          <path data-r="r-hippocampus" class="reg hip" d="M300,322 C282,316 287,300 305,302 C321,304 323,316 313,320 C323,323 322,333 308,333 C296,333 292,327 300,322 Z"/>
+          <!-- amygdala -->
+          <ellipse data-r="r-amygdala" class="reg amy" cx="268" cy="306" rx="12" ry="9"/>
+          <!-- entorhinal -->
+          <ellipse data-r="r-entorhinal" class="reg ent" cx="256" cy="324" rx="16" ry="8"/>
+          <!-- basal forebrain -->
+          <circle data-r="r-basal" class="reg bas" cx="306" cy="299" r="7"/>
+          <!-- locus coeruleus -->
+          <circle data-r="r-locus" class="reg loc" cx="416" cy="362" r="6"/>
+
+          <!-- leader lines -->
+          <g class="leaders">
+            <line x1="300" y1="90" x2="450" y2="118"/>
+            <line x1="397" y1="174" x2="560" y2="172"/>
+            <line x1="313" y1="316" x2="560" y2="300"/>
+            <line x1="416" y1="362" x2="560" y2="360"/>
+            <line x1="268" y1="306" x2="158" y2="250"/>
+            <line x1="256" y1="324" x2="158" y2="300"/>
+            <line x1="306" y1="299" x2="158" y2="352"/>
+          </g>
+          <!-- labels -->
+          <g class="lbls">
+            <text x="566" y="118" text-anchor="start">Association cortex</text>
+            <text x="566" y="176" text-anchor="start">Ventricles</text>
+            <text x="566" y="304" text-anchor="start">Hippocampus</text>
+            <text x="566" y="364" text-anchor="start">Locus coeruleus</text>
+            <text x="150" y="250" text-anchor="end">Amygdala</text>
+            <text x="150" y="304" text-anchor="end">Entorhinal cortex</text>
+            <text x="150" y="356" text-anchor="end">Basal forebrain</text>
+            <text x="520" y="392" text-anchor="middle" class="faint">cerebellum</text>
+            <text x="418" y="450" text-anchor="middle" class="faint">brainstem</text>
+          </g>
+        </svg>
+        <p class="brain-cap mono">Schematic, not to scale. Front of the brain is on the left.</p>
+      </div>
+      <div class="anat-cards" id="anatomy-cards"></div>
     </section>
 
     <!-- GLOSSARY -->
     <section id="view-glossary" class="view">
       <h2 class="section">Field glossary</h2>
-      <p class="sub">Quick definitions for the words you will hear most this summer.</p>
-      <dl class="glossary" id="glossary"></dl>
+      <p class="sub">The words you will hear most this summer, grouped by topic.</p>
+      <div id="glossary"></div>
     </section>
   </main>
 
@@ -342,13 +474,11 @@ footer{border-top:1px solid var(--line);padding:22px;text-align:center;
 /* ============================================================================
    NeuroNauts Reading Room  ::  DATA + CONFIG
    ----------------------------------------------------------------------------
-   EDIT THIS FILE to change scholars, the passcode, the reading list, or the
-   glossary. No build step. Save, commit, push.
+   EDIT THIS FILE to change scholars, passcode, papers, the history timeline,
+   the anatomy notes, or the glossary. No build step. Save, commit, push.
 
    PRIVACY: GitHub Pages is public and everything here is visible in the page
-   source. These scholars are minors. Use first names or callsigns only. No
-   last names, schools, photos, or emails. The passcode is a soft gate, not
-   real security.
+   source. These scholars are minors. Use first names or callsigns only.
 ============================================================================ */
 
 const CONFIG = {
@@ -358,13 +488,8 @@ const CONFIG = {
   scholars: ["Lukas", "Victoria", "Francesca"]
 };
 
-/* ---- Reading library --------------------------------------------------------
-   cat:   the category heading a paper sits under (see ORDER in app.js)
-   level: "start" (start here) | "core" | "deep" (deep dive)
-   Add or remove entries freely.                                                */
+/* ============================ READING LIBRARY ============================ */
 const PAPERS = [
-
-  // ===== OUR PROJECT: phage display meets Alzheimer's =====
   { id:"op-thno22", cat:"Our Project", level:"start",
     title:"Phage display derived peptides for Alzheimer's disease therapy and diagnosis",
     source:"Theranostics, 2022",
@@ -376,7 +501,6 @@ const PAPERS = [
     why:"A real biopanning campaign that selects antibodies against disease relevant tau. A close cousin of your summer project.",
     url:"https://link.springer.com/article/10.1186/s13195-024-01561-1" },
 
-  // ===== PHAGE DISPLAY =====
   { id:"pd-nobel", cat:"Phage Display", level:"start",
     title:"Phage Display: Simple Evolution in a Petri Dish (Nobel Lecture)",
     source:"George P. Smith, 2018 Nobel Prize in Chemistry",
@@ -398,7 +522,6 @@ const PAPERS = [
     why:"A modern, high throughput spin on phage display used to fish out disease antibodies. A glimpse of where the field is heading.",
     url:"https://pubmed.ncbi.nlm.nih.gov/39168282/" },
 
-  // ===== TAU BIOLOGY AND PATHOLOGY =====
   { id:"tau-adv", cat:"Tau Biology", level:"start",
     title:"Advances in the Pathogenesis of AD: Focusing on Tau-Mediated Neurodegeneration",
     source:"Review, 2013",
@@ -420,11 +543,10 @@ const PAPERS = [
     why:"How tau pathology travels region to region. The reasoning behind tau-targeting therapies.",
     url:"https://www.nature.com/articles/s41467-020-15701-2" },
 
-  // ===== AMYLOID BIOLOGY =====
   { id:"amy-25", cat:"Amyloid Biology", level:"start",
     title:"The amyloid hypothesis of Alzheimer's disease at 25 years",
     source:"Selkoe and Hardy, EMBO Molecular Medicine, 2016",
-    why:"The big idea that shaped the whole field, reviewed by two of the people who built it. Pairs naturally with the tau story.",
+    why:"The big idea that shaped the whole field, reviewed by two people who built it. Pairs naturally with the tau story.",
     url:"https://www.embopress.org/doi/full/10.15252/emmm.201606210" },
   { id:"amy-appraisal", cat:"Amyloid Biology", level:"deep",
     title:"The amyloid cascade hypothesis: an appraisal for the development of therapeutics",
@@ -432,7 +554,6 @@ const PAPERS = [
     why:"A careful, skeptical look at the dominant theory. Good practice in reading a paper that argues with the textbook.",
     url:"https://www.nature.com/articles/nrd3505" },
 
-  // ===== NEUROIMMUNOLOGY AND MICROGLIA =====
   { id:"ni-micro", cat:"Neuroimmunology and Microglia", level:"start",
     title:"The effects of microglia-associated neuroinflammation on Alzheimer's disease",
     source:"Frontiers in Immunology (review), 2023",
@@ -444,7 +565,6 @@ const PAPERS = [
     why:"TREM2 is one of the strongest genetic clues we have. This connects a single receptor to microglia, aging, and risk.",
     url:"https://pubmed.ncbi.nlm.nih.gov/34470515/" },
 
-  // ===== ALZHEIMER'S BIOMARKERS =====
   { id:"bm-ptau217", cat:"AD Biomarkers", level:"start",
     title:"P-tau217 as a Reliable Blood-Based Marker of Alzheimer's Disease",
     source:"Biomedicines (review), 2024",
@@ -461,7 +581,6 @@ const PAPERS = [
     why:"How the field decides a biomarker is good enough for the clinic. The standard your work aims toward.",
     url:"https://alz-journals.onlinelibrary.wiley.com/doi/10.1002/alz.70535" },
 
-  // ===== NEUROPATHOLOGY AND DIAGNOSTIC CRITERIA =====
   { id:"np-overview", cat:"Neuropathology and Criteria", level:"start",
     title:"Criteria for Diagnosis and Staging of Alzheimer's Disease (plain-language overview)",
     source:"Alzheimer's Association",
@@ -478,14 +597,12 @@ const PAPERS = [
     why:"The current framework that defines Alzheimer's by its biology, with biomarkers at the center.",
     url:"https://alz-journals.onlinelibrary.wiley.com/doi/10.1002/alz.13859" },
 
-  // ===== TREATMENTS AND TRANSLATION =====
   { id:"tx-lecanemab", cat:"Treatments and Translation", level:"core",
     title:"Lecanemab in Early Alzheimer's Disease (CLARITY AD trial)",
     source:"van Dyck et al., New England Journal of Medicine, 2023",
     why:"The landmark trial of an anti-amyloid antibody. Notice that the drug itself is an antibody, the same class of molecule you are selecting for.",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2212948" },
 
-  // ===== LAB METHODS AND RIGOR =====
   { id:"lm-repro", cat:"Lab Methods and Rigor", level:"start",
     title:"1,500 scientists lift the lid on reproducibility",
     source:"Baker, Nature (news feature), 2016",
@@ -503,30 +620,156 @@ const PAPERS = [
     url:"https://www.frontiersin.org/articles/10.3389/fneur.2015.00179/full" }
 ];
 
-/* ---- Glossary --------------------------------------------------------------- */
+/* ============================ HISTORY TIMELINE ===========================
+   era drives the color tag. Kept in chronological order.                    */
+const HISTORY = [
+  { year:"1906", era:"discovery", title:"The first case",
+    text:"In Germany, Alois Alzheimer presents the case of Auguste Deter, a woman in her fifties with severe memory loss, paranoia, and confusion. After she dies he stains her brain and sees two strange features: clumps between cells and tangled fibers inside them. Those plaques and tangles still define the disease." },
+  { year:"1910", era:"discovery", title:"The disease gets a name",
+    text:"Emil Kraepelin, a leading psychiatrist and Alzheimer's mentor, names the condition Alzheimer's disease in his influential textbook." },
+  { year:"1960s", era:"pathology", title:"Tangles seen up close",
+    text:"Electron microscopy reveals that the tangles are built from paired helical filaments. Studies also show that the number of plaques and tangles tracks with how severe the dementia was, the first hard link between brain pathology and symptoms." },
+  { year:"1976", era:"clinical", title:"Recognized as a major disease",
+    text:"Neurologist Robert Katzman argues in a now famous editorial that Alzheimer's is not a rare presenile oddity but one of the leading causes of death and disability in older adults. The field expands rapidly afterward." },
+  { year:"1976 to 1977", era:"biochem", title:"The cholinergic deficit",
+    text:"Researchers find a dramatic loss of the chemical messenger acetylcholine in the Alzheimer's brain. This launches the cholinergic hypothesis and the first real drug strategy." },
+  { year:"1984", era:"molecules", title:"Amyloid-beta is identified",
+    text:"George Glenner and Caine Wong purify and sequence the amyloid-beta peptide from brain blood vessels, naming the main ingredient of plaques. The same year, the NINCDS-ADRDA criteria give clinicians a shared definition of probable Alzheimer's." },
+  { year:"1985 to 1988", era:"molecules", title:"Tau is the tangle protein",
+    text:"Several groups show that the tangles are made of the protein tau in an abnormally phosphorylated state, and the tau gene is cloned. Now both lesions have a molecular identity: amyloid-beta in plaques, tau in tangles." },
+  { year:"1987", era:"genetics", title:"The APP gene is cloned",
+    text:"The gene for amyloid precursor protein is found on chromosome 21. This helps explain why people with Down syndrome, who carry an extra copy, develop Alzheimer's pathology." },
+  { year:"1991", era:"pathology", title:"Braak staging",
+    text:"Heiko and Eva Braak map the orderly march of tau tangles, beginning in the entorhinal cortex and spreading outward through six stages. Their scheme is still the backbone of neuropathology today." },
+  { year:"1992", era:"theory", title:"The amyloid cascade hypothesis",
+    text:"John Hardy and Gerald Higgins propose that amyloid-beta buildup is the first domino, triggering tangles, cell loss, and dementia. This idea guides drug development for the next thirty years." },
+  { year:"1993", era:"genetics", title:"The APOE4 risk gene",
+    text:"The APOE e4 variant is identified as the strongest common genetic risk factor for the usual late-onset form of the disease." },
+  { year:"1993 to 2003", era:"treatment", title:"The first medicines",
+    text:"A wave of symptom easing drugs arrives. Tacrine, then donepezil, rivastigmine, and galantamine raise acetylcholine, and memantine acts on glutamate signaling. They ease symptoms for a while but do not change the disease itself." },
+  { year:"1995", era:"genetics", title:"Presenilin genes",
+    text:"Mutations in the presenilin genes are found to cause aggressive, early-onset inherited Alzheimer's, tying the disease tightly to how amyloid is cut from its precursor." },
+  { year:"1999", era:"treatment", title:"Clearing plaques with a vaccine",
+    text:"Dale Schenk and colleagues show that immunizing mice against amyloid-beta clears plaques from their brains. This opens the door to antibody based therapies." },
+  { year:"2004", era:"imaging", title:"Seeing amyloid in the living brain",
+    text:"Pittsburgh Compound B and PET scanning let researchers watch amyloid plaques in living people for the first time, instead of waiting for autopsy." },
+  { year:"2011", era:"clinical", title:"Biology before symptoms",
+    text:"Revised NIA and Alzheimer's Association criteria formally recognize a preclinical stage, where the biology is underway years before any memory problems appear." },
+  { year:"2012", era:"pathology", title:"Modern neuropathology scoring",
+    text:"The NIA-AA ABC system standardizes how Alzheimer's is scored at autopsy: A for amyloid, B for Braak tangle stage, and C for plaque density." },
+  { year:"2017", era:"pathology", title:"Tangles at atomic resolution",
+    text:"Cryo-electron microscopy reveals the exact atomic structure of tau filaments taken from an Alzheimer's brain, showing the shape that defines the disease." },
+  { year:"2018", era:"theory", title:"A biological definition",
+    text:"The NIA-AA research framework defines Alzheimer's by biomarkers, the ATN system of Amyloid, Tau, and Neurodegeneration, rather than by symptoms alone." },
+  { year:"2021", era:"treatment", title:"First anti-amyloid antibody",
+    text:"Aducanumab (Aduhelm) receives a controversial accelerated FDA approval, the first drug aimed at the underlying biology rather than just symptoms." },
+  { year:"2023", era:"treatment", title:"A drug that slows decline",
+    text:"Lecanemab (Leqembi) earns full FDA approval in July after the CLARITY AD trial shows it modestly slows decline and clears amyloid. The drug is itself an antibody, the same class of molecule you are selecting for." },
+  { year:"2024", era:"treatment", title:"A second drug and new criteria",
+    text:"Donanemab (Kisunla) is approved in July, and the Alzheimer's Association issues revised biological criteria for diagnosis and staging." },
+  { year:"2025", era:"biomarker", title:"The first blood test",
+    text:"In May, the FDA clears the first blood test for Alzheimer's, the Lumipulse pTau217 to amyloid ratio, bringing detection within reach of a simple blood draw. This is exactly the kind of test better antibodies can improve." }
+];
+
+/* ============================ BRAIN ANATOMY ==============================
+   id matches a shape in the SVG so the card can highlight it.                */
+const ANATOMY = [
+  { id:"r-entorhinal", name:"Entorhinal cortex", tag:"First to fall",
+    role:"The memory gateway that links the hippocampus to the rest of the cortex.",
+    ad:"Tau tangles usually appear here first, at Braak stage I, before symptoms begin." },
+  { id:"r-hippocampus", name:"Hippocampus", tag:"Memory hub",
+    role:"A seahorse-shaped structure deep in the temporal lobe that forms new memories.",
+    ad:"It shrinks early in Alzheimer's, which is why forming new memories fails before older ones." },
+  { id:"r-amygdala", name:"Amygdala", tag:"Emotion and memory",
+    role:"An almond-shaped center for emotion and emotional memory, just in front of the hippocampus.",
+    ad:"It accumulates plaques and tangles and is linked to the mood and behavior changes seen in the disease." },
+  { id:"r-neocortex", name:"Association cortex", tag:"Higher thinking",
+    role:"The broad outer sheet handling language, reasoning, planning, and perception.",
+    ad:"Tau spreads here in later Braak stages and plaques become widespread, matching the loss of complex abilities." },
+  { id:"r-basal", name:"Basal forebrain", tag:"Acetylcholine source",
+    role:"Home to the nucleus basalis of Meynert, the brain's main supply of acetylcholine to the cortex.",
+    ad:"Its neurons die early. This is the basis of the cholinergic hypothesis and of donepezil-style drugs." },
+  { id:"r-locus", name:"Locus coeruleus", tag:"Possible starting point",
+    role:"A tiny brainstem nucleus that supplies noradrenaline to much of the brain.",
+    ad:"Recent work suggests it may be one of the very first places tau pathology begins, even before the entorhinal cortex." },
+  { id:"r-ventricle", name:"Ventricles", tag:"Visible atrophy",
+    role:"Fluid-filled spaces in the center of the brain.",
+    ad:"They enlarge as surrounding tissue is lost, a clear sign of brain shrinkage on a scan." }
+];
+
+/* ============================== GLOSSARY =================================
+   grouped by cat in the order listed in app.js GLOSSARY_ORDER.               */
 const GLOSSARY = [
-  { term:"Tau", def:"A protein that normally stabilizes the tracks (microtubules) inside neurons. In Alzheimer's it becomes altered and clumps together." },
-  { term:"Phosphorylated tau (p-tau)", def:"Tau with extra phosphate groups attached. Versions like p-tau217 rise early in Alzheimer's and make strong biomarkers." },
-  { term:"Neurofibrillary tangle (NFT)", def:"A tangle of misfolded tau inside a neuron. One of the two classic Alzheimer's lesions." },
-  { term:"Amyloid-beta", def:"A peptide that builds into plaques outside neurons. The other classic Alzheimer's lesion." },
-  { term:"Amyloid cascade hypothesis", def:"The long dominant idea that amyloid-beta buildup is the first domino that sets the rest of Alzheimer's in motion." },
-  { term:"Protofibril / oligomer", def:"Small, soluble clumps of amyloid-beta, thought to be especially toxic. The drug lecanemab targets these." },
-  { term:"Biomarker", def:"Something measurable (in blood, spinal fluid, or on a scan) that reflects what is happening in the body." },
-  { term:"Phage display", def:"A method that puts proteins on the surface of viruses (phage) so you can fish out the ones that bind your target." },
-  { term:"Biopanning", def:"The rounds of binding, washing, and eluting that enrich a phage library for the best binders." },
-  { term:"Epitope", def:"The exact small region of a target that an antibody or peptide grabs onto." },
-  { term:"ELISA", def:"A plate based assay that uses a color change to measure how much something binds. Your main readout this summer." },
-  { term:"Specificity", def:"Whether your binder grabs only the thing you want (modified tau) and not the look-alikes (unmodified tau)." },
-  { term:"Monoclonal antibody", def:"A single, uniform antibody that recognizes one epitope. Many drugs and tests are built from these." },
-  { term:"Antibody validation", def:"The evidence that an antibody truly binds its intended target and nothing else. The five pillars are a common standard." },
-  { term:"Microglia", def:"The brain's resident immune cells. They clean up debris and, when overactive, drive neuroinflammation." },
-  { term:"TREM2", def:"A receptor on microglia. Certain rare variants raise Alzheimer's risk, linking the immune system to the disease." },
-  { term:"Braak staging", def:"A scale describing how far tau tangles have spread through the brain, stage I through VI." },
-  { term:"ABC score", def:"The standard neuropathology scoring of Alzheimer's: Amyloid, Braak tangle stage, and CERAD plaque score." },
-  { term:"ATN framework", def:"Classifying Alzheimer's by Amyloid, Tau, and Neurodegeneration biomarkers rather than by symptoms alone." },
-  { term:"Calpain", def:"A calcium-activated protease (protein cutter) that can clip tau and other proteins. A long running theme in this lab." },
-  { term:"Cryo-EM", def:"Cryo-electron microscopy. Flash freezing molecules to image them at near-atomic detail, used to solve tangle structure." },
-  { term:"Reproducibility", def:"Whether an experiment gives the same answer when repeated. The reason for replicates, controls, and clean records." }
+  // Brain anatomy
+  { cat:"Brain Anatomy", term:"Neuron", def:"A nerve cell. The brain has tens of billions, wired together to carry signals." },
+  { cat:"Brain Anatomy", term:"Synapse", def:"The tiny junction where one neuron passes a signal to the next." },
+  { cat:"Brain Anatomy", term:"Axon", def:"The long fiber that carries a neuron's outgoing signal." },
+  { cat:"Brain Anatomy", term:"Dendrite", def:"The branched part of a neuron that receives incoming signals." },
+  { cat:"Brain Anatomy", term:"Microtubule", def:"A structural track inside cells. Tau's normal job is to keep these stable." },
+  { cat:"Brain Anatomy", term:"Cerebral cortex", def:"The folded outer layer of the brain where most higher thinking happens." },
+  { cat:"Brain Anatomy", term:"Hippocampus", def:"A seahorse-shaped region that builds new memories. Hit early in Alzheimer's." },
+  { cat:"Brain Anatomy", term:"Entorhinal cortex", def:"The gateway between the hippocampus and cortex, where tau tangles often appear first." },
+  { cat:"Brain Anatomy", term:"Amygdala", def:"An almond-shaped center for emotion and emotional memory." },
+  { cat:"Brain Anatomy", term:"Basal forebrain", def:"Home to the nucleus basalis of Meynert, the brain's main acetylcholine supply." },
+  { cat:"Brain Anatomy", term:"Locus coeruleus", def:"A small brainstem nucleus supplying noradrenaline, possibly an early site of tau pathology." },
+  { cat:"Brain Anatomy", term:"Ventricles", def:"Fluid-filled spaces that enlarge as the brain shrinks." },
+  { cat:"Brain Anatomy", term:"Blood-brain barrier", def:"A tight lining of blood vessels that controls what can enter the brain from the blood." },
+
+  // Pathology and lesions
+  { cat:"Pathology and Lesions", term:"Plaque", def:"A clump of amyloid-beta that builds up outside neurons. One of the two hallmark lesions." },
+  { cat:"Pathology and Lesions", term:"Neuritic plaque", def:"A plaque surrounded by damaged nerve endings, the type counted in pathology scoring." },
+  { cat:"Pathology and Lesions", term:"Neurofibrillary tangle (NFT)", def:"A tangle of misfolded tau inside a neuron. The second hallmark lesion." },
+  { cat:"Pathology and Lesions", term:"Paired helical filament (PHF)", def:"The twisted fiber, made of tau, that builds a tangle." },
+  { cat:"Pathology and Lesions", term:"Tau", def:"A protein that normally stabilizes microtubules. In disease it detaches, gets modified, and clumps." },
+  { cat:"Pathology and Lesions", term:"Phosphorylated tau (p-tau)", def:"Tau with extra phosphate groups. Forms like p-tau217 rise early and make strong biomarkers." },
+  { cat:"Pathology and Lesions", term:"Hyperphosphorylation", def:"Adding too many phosphate groups, which makes tau let go of microtubules and aggregate." },
+  { cat:"Pathology and Lesions", term:"Amyloid-beta", def:"A sticky peptide cut from a larger precursor protein. Builds into plaques." },
+  { cat:"Pathology and Lesions", term:"Oligomer / protofibril", def:"Small soluble clumps of amyloid-beta, thought to be especially toxic. The target of lecanemab." },
+  { cat:"Pathology and Lesions", term:"Braak staging", def:"A scale (I to VI) describing how far tau tangles have spread through the brain." },
+  { cat:"Pathology and Lesions", term:"ABC score", def:"The standard pathology scoring of Alzheimer's: Amyloid, Braak tangle stage, and CERAD plaque score." },
+  { cat:"Pathology and Lesions", term:"Tauopathy", def:"Any disease defined by abnormal tau buildup. Alzheimer's is one of several." },
+  { cat:"Pathology and Lesions", term:"Prion-like spreading", def:"The way misfolded tau can seed normal tau to misfold, spreading region to region." },
+  { cat:"Pathology and Lesions", term:"Atrophy", def:"Shrinkage of brain tissue as neurons and connections are lost." },
+  { cat:"Pathology and Lesions", term:"Gliosis", def:"The reaction of support cells (glia) to injury, a sign of ongoing damage." },
+
+  // Molecules and genes
+  { cat:"Molecules and Genes", term:"Amyloid precursor protein (APP)", def:"The large parent protein that amyloid-beta is cut out of." },
+  { cat:"Molecules and Genes", term:"Secretases", def:"Enzymes (beta and gamma secretase) that cut APP. The wrong cuts release amyloid-beta." },
+  { cat:"Molecules and Genes", term:"APOE / APOE4", def:"A gene affecting fat transport. The e4 version is the strongest common risk factor for late-onset AD." },
+  { cat:"Molecules and Genes", term:"Presenilin", def:"Part of the gamma secretase machinery. Mutations cause inherited early-onset Alzheimer's." },
+  { cat:"Molecules and Genes", term:"Calpain", def:"A calcium-activated protease that clips tau and other proteins. A long running theme in this lab." },
+  { cat:"Molecules and Genes", term:"Proteolysis", def:"The cutting of proteins by enzymes. Calpain-mediated cutting of tau is a focus here." },
+  { cat:"Molecules and Genes", term:"Isoform", def:"One of several versions of a protein made from the same gene. Human tau has six." },
+  { cat:"Molecules and Genes", term:"Epitope", def:"The exact small region of a target that an antibody or peptide grabs onto." },
+
+  // Biomarkers and methods
+  { cat:"Biomarkers and Methods", term:"Biomarker", def:"Something measurable in blood, spinal fluid, or on a scan that reflects what is happening in the body." },
+  { cat:"Biomarkers and Methods", term:"p-tau217", def:"A specific phosphorylated tau measured in blood. One of the best current Alzheimer's biomarkers." },
+  { cat:"Biomarkers and Methods", term:"ATN framework", def:"Classifying Alzheimer's by Amyloid, Tau, and Neurodegeneration biomarkers, not symptoms." },
+  { cat:"Biomarkers and Methods", term:"Cerebrospinal fluid (CSF)", def:"The fluid around the brain and spinal cord. Sampled by lumbar puncture to measure biomarkers." },
+  { cat:"Biomarkers and Methods", term:"PET imaging", def:"A scan using a tracer that lights up amyloid or tau in the living brain." },
+  { cat:"Biomarkers and Methods", term:"Phage display", def:"Putting proteins on the surface of viruses so you can fish out the ones that bind your target." },
+  { cat:"Biomarkers and Methods", term:"Biopanning", def:"The rounds of binding, washing, and eluting that enrich a phage library for the best binders." },
+  { cat:"Biomarkers and Methods", term:"ELISA", def:"A plate based assay that uses a color change to measure binding. Your main readout this summer." },
+  { cat:"Biomarkers and Methods", term:"Specificity", def:"Whether your binder grabs only the thing you want and not the look-alikes." },
+  { cat:"Biomarkers and Methods", term:"Antibody validation", def:"The evidence that an antibody truly binds its intended target. The five pillars are a common standard." },
+  { cat:"Biomarkers and Methods", term:"Monoclonal antibody", def:"A single, uniform antibody recognizing one epitope. Many tests and drugs are built from these." },
+  { cat:"Biomarkers and Methods", term:"Cryo-EM", def:"Cryo-electron microscopy. Flash freezing molecules to image them at near-atomic detail." },
+  { cat:"Biomarkers and Methods", term:"Reproducibility", def:"Whether an experiment gives the same answer when repeated. The reason for replicates and controls." },
+
+  // Clinical and treatment
+  { cat:"Clinical and Treatment", term:"Dementia", def:"A loss of memory and thinking severe enough to interfere with daily life. Alzheimer's is the most common cause." },
+  { cat:"Clinical and Treatment", term:"Mild cognitive impairment (MCI)", def:"Noticeable cognitive decline that does not yet disrupt independence. Often an early stage." },
+  { cat:"Clinical and Treatment", term:"Preclinical AD", def:"The phase where biomarkers show the disease is underway but there are no symptoms yet." },
+  { cat:"Clinical and Treatment", term:"Cholinergic hypothesis", def:"The idea that losing acetylcholine signaling drives many Alzheimer's symptoms." },
+  { cat:"Clinical and Treatment", term:"Acetylcholine", def:"A chemical messenger important for memory and attention, depleted in Alzheimer's." },
+  { cat:"Clinical and Treatment", term:"Cholinesterase inhibitor", def:"A drug class (donepezil, rivastigmine, galantamine) that raises acetylcholine to ease symptoms." },
+  { cat:"Clinical and Treatment", term:"Memantine", def:"A drug that dampens overactive glutamate signaling, used in moderate to severe disease." },
+  { cat:"Clinical and Treatment", term:"Immunotherapy", def:"Using antibodies to target a disease protein. In Alzheimer's, antibodies against amyloid-beta." },
+  { cat:"Clinical and Treatment", term:"Anti-amyloid antibody", def:"A drug like lecanemab or donanemab that clears amyloid and modestly slows decline." },
+  { cat:"Clinical and Treatment", term:"ARIA", def:"Amyloid-related imaging abnormalities, brain swelling or tiny bleeds that can occur with anti-amyloid drugs." },
+  { cat:"Clinical and Treatment", term:"Microglia", def:"The brain's resident immune cells. Helpful cleaners that can also drive harmful inflammation." },
+  { cat:"Clinical and Treatment", term:"TREM2", def:"A receptor on microglia. Certain rare variants raise Alzheimer's risk." }
 ];
 
 /* ---- app ---- */
@@ -540,35 +783,33 @@ const GLOSSARY = [
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const KEY = "neuronauts:v2";
 
-  // order categories appear in the library
-  const ORDER = [
+  const LIB_ORDER = [
     "Our Project", "Phage Display", "Tau Biology", "Amyloid Biology",
     "Neuroimmunology and Microglia", "AD Biomarkers", "Neuropathology and Criteria",
     "Treatments and Translation", "Lab Methods and Rigor"
   ];
+  const GLOSSARY_ORDER = [
+    "Brain Anatomy", "Pathology and Lesions", "Molecules and Genes",
+    "Biomarkers and Methods", "Clinical and Treatment"
+  ];
 
-  let scholar = null;
-  let selectedName = null;
-  let libFilter = "all";
-  let libQuery = "";
+  let scholar = null, selectedName = null, libFilter = "all", libQuery = "";
 
-  /* ---------- storage (per scholar, this browser) ---------- */
+  /* ---------- storage ---------- */
   function store() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
   function save(d) { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) {} }
   function userData() { const d = store(); d[scholar] = d[scholar] || { read: {} }; return d; }
 
-  /* ---------- LOGIN ---------- */
+  /* ---------- login ---------- */
   function buildLogin() {
-    const who = $("#who");
-    who.innerHTML = "";
+    const who = $("#who"); who.innerHTML = "";
     CONFIG.scholars.forEach(name => {
       const b = document.createElement("button");
       b.textContent = name;
       b.onclick = () => {
         selectedName = name;
         $$("#who button").forEach(x => x.classList.remove("sel"));
-        b.classList.add("sel");
-        $("#err").textContent = "";
+        b.classList.add("sel"); $("#err").textContent = "";
       };
       who.appendChild(b);
     });
@@ -578,41 +819,36 @@ const GLOSSARY = [
     const last = store()._session;
     if (last && CONFIG.scholars.includes(last)) { scholar = last; enterApp(); }
   }
-
   function attempt() {
     if (!selectedName) { $("#err").textContent = "Pick your name first, explorer."; return; }
     if ($("#pass").value.trim() !== CONFIG.passcode) {
-      $("#err").textContent = "That passcode does not match. Ask " + CONFIG.mentor + ".";
-      return;
+      $("#err").textContent = "That passcode does not match. Ask " + CONFIG.mentor + "."; return;
     }
     scholar = selectedName;
     const d = store(); d._session = scholar; save(d);
     enterApp();
   }
-
   function enterApp() {
     $("#login").style.display = "none";
     $("#app").style.display = "block";
     $("#greet-name").textContent = scholar;
-    buildLibrary();
-    buildGlossary();
+    buildLibrary(); buildHistory(); buildAnatomy(); buildGlossary();
     showView("library");
   }
-
   function logout() { const d = store(); delete d._session; save(d); location.reload(); }
 
-  /* ---------- TABS ---------- */
+  /* ---------- tabs ---------- */
   function showView(id) {
     $$(".view").forEach(v => v.classList.toggle("show", v.id === "view-" + id));
     $$("nav.tabs button").forEach(b => b.classList.toggle("active", b.dataset.view === id));
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  /* ---------- LIBRARY ---------- */
+  /* ---------- library ---------- */
   function buildLibrary() {
     const fwrap = $("#filters");
     const present = Array.from(new Set(PAPERS.map(p => p.cat)));
-    const cats = ["all", ...ORDER.filter(c => present.includes(c)), ...present.filter(c => !ORDER.includes(c))];
+    const cats = ["all", ...LIB_ORDER.filter(c => present.includes(c)), ...present.filter(c => !LIB_ORDER.includes(c))];
     fwrap.innerHTML = "";
     cats.forEach(cat => {
       const b = document.createElement("button");
@@ -624,68 +860,100 @@ const GLOSSARY = [
     $("#lib-search").addEventListener("input", e => { libQuery = e.target.value.toLowerCase(); renderLibrary(); });
     renderLibrary();
   }
-
   function renderLibrary() {
-    const wrap = $("#library");
-    const ud = userData();
+    const wrap = $("#library"), ud = userData();
     let list = PAPERS.slice();
     if (libFilter !== "all") list = list.filter(p => p.cat === libFilter);
-    if (libQuery) list = list.filter(p =>
-      (p.title + " " + p.source + " " + p.why + " " + p.cat).toLowerCase().includes(libQuery));
-
-    // running count of read papers (whole library)
-    const totalRead = PAPERS.filter(p => ud[scholar].read[p.id]).length;
-    $("#read-count").textContent = totalRead + " of " + PAPERS.length + " read";
-
+    if (libQuery) list = list.filter(p => (p.title + " " + p.source + " " + p.why + " " + p.cat).toLowerCase().includes(libQuery));
+    $("#read-count").textContent = PAPERS.filter(p => ud[scholar].read[p.id]).length + " of " + PAPERS.length + " read";
     if (!list.length) { wrap.innerHTML = '<p class="sub">No papers match that search.</p>'; return; }
-
     const groups = {};
     list.forEach(p => { (groups[p.cat] = groups[p.cat] || []).push(p); });
-    const orderedCats = Object.keys(groups).sort((a, b) => {
-      const ia = ORDER.indexOf(a), ib = ORDER.indexOf(b);
+    const ordered = Object.keys(groups).sort((a, b) => {
+      const ia = LIB_ORDER.indexOf(a), ib = LIB_ORDER.indexOf(b);
       return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
     });
-
     let html = "";
-    orderedCats.forEach(cat => {
+    ordered.forEach(cat => {
       html += '<div class="cat-group"><div class="cat-title">' + cat + ' <span class="n">' + groups[cat].length + ' papers</span></div>';
       groups[cat].forEach(p => {
         const read = !!ud[scholar].read[p.id];
         const lvl = { start: "Start here", core: "Core read", deep: "Deep dive" }[p.level];
-        html += '<div class="paper ' + (read ? "read" : "") + '" data-id="' + p.id + '">' +
-          '<label class="check read-toggle" title="Mark as read">' +
-            '<input type="checkbox" data-read="' + p.id + '" ' + (read ? "checked" : "") + '>' +
-            '<span class="box">&#10003;</span>' +
-          '</label>' +
-          '<div class="info">' +
-            '<div class="ptitle"><a href="' + p.url + '" target="_blank" rel="noopener">' + p.title + '</a></div>' +
-            '<div class="psrc">' + p.source + '</div>' +
-            '<div class="pwhy">' + p.why + '</div>' +
-            '<div class="ptags">' +
-              '<span class="lvl ' + p.level + '">' + lvl + '</span>' +
-              '<a class="open-link" href="' + p.url + '" target="_blank" rel="noopener">open paper &rarr;</a>' +
-            '</div>' +
-          '</div></div>';
+        html += '<div class="paper ' + (read ? "read" : "") + '">' +
+          '<label class="check read-toggle" title="Mark as read"><input type="checkbox" data-read="' + p.id + '" ' + (read ? "checked" : "") + '><span class="box">&#10003;</span></label>' +
+          '<div class="info"><div class="ptitle"><a href="' + p.url + '" target="_blank" rel="noopener">' + p.title + '</a></div>' +
+          '<div class="psrc">' + p.source + '</div><div class="pwhy">' + p.why + '</div>' +
+          '<div class="ptags"><span class="lvl ' + p.level + '">' + lvl + '</span>' +
+          '<a class="open-link" href="' + p.url + '" target="_blank" rel="noopener">open paper &rarr;</a></div></div></div>';
       });
       html += "</div>";
     });
     wrap.innerHTML = html;
-
     $$("[data-read]").forEach(cb => cb.addEventListener("change", e => {
-      const id = e.target.dataset.read;
-      const d = userData();
+      const id = e.target.dataset.read, d = userData();
       if (e.target.checked) d[scholar].read[id] = true; else delete d[scholar].read[id];
       save(d);
       e.target.closest(".paper").classList.toggle("read", e.target.checked);
-      const tot = PAPERS.filter(p => d[scholar].read[p.id]).length;
-      $("#read-count").textContent = tot + " of " + PAPERS.length + " read";
+      $("#read-count").textContent = PAPERS.filter(p => d[scholar].read[p.id]).length + " of " + PAPERS.length + " read";
     }));
   }
 
-  /* ---------- GLOSSARY ---------- */
+  /* ---------- history ---------- */
+  function buildHistory() {
+    const wrap = $("#history");
+    wrap.innerHTML = HISTORY.map(h =>
+      '<div class="tl-item">' +
+        '<div class="tl-marker"><span class="tl-dot ' + h.era + '"></span></div>' +
+        '<div class="tl-card">' +
+          '<div class="tl-year mono">' + h.year + '</div>' +
+          '<div class="tl-title">' + h.title + ' <span class="era-tag ' + h.era + '">' + eraLabel(h.era) + '</span></div>' +
+          '<p class="tl-text">' + h.text + '</p>' +
+        '</div>' +
+      '</div>').join("");
+  }
+  function eraLabel(e) {
+    return { discovery:"Discovery", pathology:"Neuropathology", clinical:"Clinical", biochem:"Biochemistry",
+      molecules:"Molecules", genetics:"Genetics", theory:"Theory", treatment:"Treatment",
+      imaging:"Imaging", biomarker:"Biomarker" }[e] || e;
+  }
+
+  /* ---------- anatomy ---------- */
+  function buildAnatomy() {
+    const wrap = $("#anatomy-cards");
+    wrap.innerHTML = ANATOMY.map(a =>
+      '<button class="anat-card" data-region="' + a.id + '">' +
+        '<div class="anat-name">' + a.name + ' <span class="anat-tag">' + a.tag + '</span></div>' +
+        '<div class="anat-role">' + a.role + '</div>' +
+        '<div class="anat-ad"><b>In Alzheimer\u2019s:</b> ' + a.ad + '</div>' +
+      '</button>').join("");
+    $$(".anat-card").forEach(card => card.addEventListener("click", () => {
+      const id = card.dataset.region;
+      $$(".anat-card").forEach(c => c.classList.toggle("active", c === card));
+      const svg = $("#brain-svg");
+      if (svg) {
+        $$("[data-r]", svg).forEach(el => el.classList.remove("flash"));
+        const target = svg.querySelector('[data-r="' + id + '"]');
+        if (target) { void target.getBoundingClientRect(); target.classList.add("flash"); }
+      }
+    }));
+  }
+
+  /* ---------- glossary (grouped) ---------- */
   function buildGlossary() {
-    $("#glossary").innerHTML = GLOSSARY.map(g =>
-      '<div class="gloss"><dt>' + g.term + '</dt><dd>' + g.def + '</dd></div>').join("");
+    const wrap = $("#glossary");
+    const groups = {};
+    GLOSSARY.forEach(g => { (groups[g.cat] = groups[g.cat] || []).push(g); });
+    const ordered = Object.keys(groups).sort((a, b) => {
+      const ia = GLOSSARY_ORDER.indexOf(a), ib = GLOSSARY_ORDER.indexOf(b);
+      return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+    });
+    let html = "";
+    ordered.forEach(cat => {
+      html += '<div class="gloss-group"><div class="cat-title">' + cat + ' <span class="n">' + groups[cat].length + ' terms</span></div><dl class="glossary">';
+      groups[cat].forEach(g => { html += '<div class="gloss"><dt>' + g.term + '</dt><dd>' + g.def + '</dd></div>'; });
+      html += '</dl></div>';
+    });
+    wrap.innerHTML = html;
   }
 
   /* ---------- boot ---------- */
