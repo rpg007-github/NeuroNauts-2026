@@ -399,6 +399,20 @@ footer{border-top:1px solid var(--line);padding:22px;text-align:center;
 .rev-a b{color:#34d399}
 .rev-e{font-size:.86rem;color:var(--text-dim)}
 
+/* ---------- 3D BRAIN EMBED + ATLAS LINKS ---------- */
+.brain3d{margin-bottom:20px}
+.brain3d-frame{position:relative;width:100%;padding-top:60%;border-radius:16px;overflow:hidden;
+  border:1px solid var(--line-bright);background:#0a0e23;box-shadow:var(--shadow)}
+.brain3d-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.atlas-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:26px}
+.atlas-btn{display:flex;align-items:center;gap:14px;text-decoration:none;background:var(--panel);
+  border:1px solid var(--line);border-radius:14px;padding:16px 18px;transition:.18s}
+.atlas-btn:hover{border-color:var(--cyan);transform:translateY(-2px);box-shadow:0 0 26px -12px var(--cyan)}
+.atlas-em{font-size:1.7rem;flex:none;line-height:1}
+.atlas-txt b{display:block;color:var(--cyan);font-family:"Unbounded",sans-serif;font-size:.95rem;margin-bottom:3px}
+.atlas-txt small{color:var(--text-dim);font-size:.82rem;line-height:1.45}
+.subhead{font-family:"Unbounded",sans-serif;font-size:1.15rem;margin:6px 0 4px}
+
 </style>
 </head>
 <body>
@@ -488,57 +502,29 @@ footer{border-top:1px solid var(--line);padding:22px;text-align:center;
 
     <!-- ANATOMY -->
     <section id="view-anatomy" class="view">
-      <h2 class="section">The brain in Alzheimer's</h2>
-      <p class="sub">A simplified side view. Tap a region below to highlight roughly where it sits. The disease does not strike everywhere at once; it follows a path.</p>
-      <div class="brain-wrap">
-        <svg id="brain-svg" viewBox="0 0 720 470" role="img" aria-label="Simplified diagram of the brain">
-          <!-- cerebellum -->
-          <ellipse cx="520" cy="322" rx="52" ry="42" fill="rgba(120,150,230,.10)" stroke="rgba(159,179,230,.35)" stroke-width="1.5"/>
-          <path d="M474,300 C500,312 540,312 566,300 M470,322 C500,336 540,336 570,322 M476,344 C502,356 538,356 564,344" fill="none" stroke="rgba(159,179,230,.3)" stroke-width="1"/>
-          <!-- brainstem -->
-          <path d="M404,298 C402,345 408,394 418,432 C426,394 432,345 432,298 Z" fill="rgba(120,150,230,.10)" stroke="rgba(159,179,230,.35)" stroke-width="1.5"/>
-          <!-- cerebrum / neocortex -->
-          <path data-r="r-neocortex" class="reg neo" d="M120,215 C100,150 165,95 245,86 C320,78 380,76 445,92 C512,108 545,150 543,192 C541,228 516,250 492,258 C455,270 430,262 414,266 C424,298 406,330 352,333 C296,336 248,330 214,317 C168,300 132,272 120,215 Z"/>
-          <!-- sulci texture -->
-          <path d="M180,150 C220,140 250,160 245,190 M300,110 C320,150 300,175 330,195 M390,110 C400,150 380,180 410,200 M460,140 C455,175 480,190 470,215 M210,235 C250,225 270,245 300,238" fill="none" stroke="rgba(159,179,230,.22)" stroke-width="1.4"/>
-          <!-- ventricles -->
-          <path data-r="r-ventricle" class="reg vent" d="M352,150 C372,140 394,151 397,173 C400,192 384,198 372,189 C359,198 343,191 346,170 C347,161 350,154 352,150 Z"/>
-          <!-- hippocampus -->
-          <path data-r="r-hippocampus" class="reg hip" d="M300,322 C282,316 287,300 305,302 C321,304 323,316 313,320 C323,323 322,333 308,333 C296,333 292,327 300,322 Z"/>
-          <!-- amygdala -->
-          <ellipse data-r="r-amygdala" class="reg amy" cx="268" cy="306" rx="12" ry="9"/>
-          <!-- entorhinal -->
-          <ellipse data-r="r-entorhinal" class="reg ent" cx="256" cy="324" rx="16" ry="8"/>
-          <!-- basal forebrain -->
-          <circle data-r="r-basal" class="reg bas" cx="306" cy="299" r="7"/>
-          <!-- locus coeruleus -->
-          <circle data-r="r-locus" class="reg loc" cx="416" cy="362" r="6"/>
+      <h2 class="section">Explore the brain in 3D</h2>
+      <p class="sub">Rotate it, zoom in, and click the labels on the model to find each structure. Then read how Alzheimer's affects the regions that matter most, and open one of the full interactive atlases to go deeper.</p>
 
-          <!-- leader lines -->
-          <g class="leaders">
-            <line x1="300" y1="90" x2="450" y2="118"/>
-            <line x1="397" y1="174" x2="560" y2="172"/>
-            <line x1="313" y1="316" x2="560" y2="300"/>
-            <line x1="416" y1="362" x2="560" y2="360"/>
-            <line x1="268" y1="306" x2="158" y2="250"/>
-            <line x1="256" y1="324" x2="158" y2="300"/>
-            <line x1="306" y1="299" x2="158" y2="352"/>
-          </g>
-          <!-- labels -->
-          <g class="lbls">
-            <text x="566" y="118" text-anchor="start">Association cortex</text>
-            <text x="566" y="176" text-anchor="start">Ventricles</text>
-            <text x="566" y="304" text-anchor="start">Hippocampus</text>
-            <text x="566" y="364" text-anchor="start">Locus coeruleus</text>
-            <text x="150" y="250" text-anchor="end">Amygdala</text>
-            <text x="150" y="304" text-anchor="end">Entorhinal cortex</text>
-            <text x="150" y="356" text-anchor="end">Basal forebrain</text>
-            <text x="520" y="392" text-anchor="middle" class="faint">cerebellum</text>
-            <text x="418" y="450" text-anchor="middle" class="faint">brainstem</text>
-          </g>
-        </svg>
-        <p class="brain-cap mono">Schematic, not to scale. Front of the brain is on the left.</p>
+      <div class="brain3d">
+        <div class="brain3d-frame">
+          <iframe title="Interactive 3D brain model" src="https://sketchfab.com/models/28c8971e11334e8b97a2a0d6235992e8/embed?ui_theme=dark&amp;autostart=0&amp;annotations_visible=1&amp;ui_hint=2&amp;ui_infos=0&amp;ui_watermark=0" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="brain-cap mono">3D model "Brain with labeled parts" by AbdulMuhaymin on Sketchfab. Drag to rotate, scroll to zoom, click a label to learn the part.</p>
       </div>
+
+      <div class="atlas-links">
+        <a class="atlas-btn" href="https://www.brainfacts.org/3d-brain" target="_blank" rel="noopener">
+          <span class="atlas-em">&#129504;</span>
+          <span class="atlas-txt"><b>3D Brain &rarr;</b><small>BrainFacts.org (Society for Neuroscience). 29 structures, each with its function and what goes wrong in disease.</small></span>
+        </a>
+        <a class="atlas-btn" href="https://neurotorium.org/tool/brain-atlas/" target="_blank" rel="noopener">
+          <span class="atlas-em">&#128301;</span>
+          <span class="atlas-txt"><b>3D Brain Atlas &rarr;</b><small>Neurotorium. Fade the cortex away to reveal the hippocampus, amygdala, and ventricles underneath.</small></span>
+        </a>
+      </div>
+
+      <h3 class="subhead">Key regions in Alzheimer's</h3>
+      <p class="sub">The disease does not strike everywhere at once; it follows a path. Hunt for these in the 3D model above.</p>
       <div class="anat-cards" id="anatomy-cards"></div>
     </section>
 
@@ -1399,18 +1385,8 @@ const QUIZ = [
   /* ---------- anatomy ---------- */
   function buildAnatomy() {
     $("#anatomy-cards").innerHTML = ANATOMY.map(a =>
-      '<button class="anat-card" data-region="' + a.id + '"><div class="anat-name">' + a.name + ' <span class="anat-tag">' + a.tag + '</span></div>' +
-      '<div class="anat-role">' + a.role + '</div><div class="anat-ad"><b>In Alzheimer\u2019s:</b> ' + a.ad + '</div></button>').join("");
-    $$(".anat-card").forEach(card => card.addEventListener("click", () => {
-      const id = card.dataset.region;
-      $$(".anat-card").forEach(c => c.classList.toggle("active", c === card));
-      const svg = $("#brain-svg");
-      if (svg) {
-        $$("[data-r]", svg).forEach(el => el.classList.remove("flash"));
-        const t = svg.querySelector('[data-r="' + id + '"]');
-        if (t) { void t.getBoundingClientRect(); t.classList.add("flash"); }
-      }
-    }));
+      '<div class="anat-card"><div class="anat-name">' + a.name + ' <span class="anat-tag">' + a.tag + '</span></div>' +
+      '<div class="anat-role">' + a.role + '</div><div class="anat-ad"><b>In Alzheimer\u2019s:</b> ' + a.ad + '</div></div>').join("");
   }
 
   /* ---------- glossary ---------- */
