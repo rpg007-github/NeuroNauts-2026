@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuroNauts Reading Room</title>
+<meta name="description" content="Reading room for the NeuroNauts Scholars Program: curated papers and a field glossary.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================================
+   NeuroNauts Mission Console  ::  STYLES
+============================================================================ */
+:root{
+  --ink:#0a0e23;
+  --ink-2:#0d1330;
+  --panel:rgba(20,28,64,.55);
+  --panel-solid:#121a3a;
+  --line:rgba(120,150,230,.18);
+  --line-bright:rgba(120,170,255,.4);
+  --text:#e8edff;
+  --text-dim:#9aa7d4;
+  --text-faint:#6b78a8;
+  --cyan:#5eead4;
+  --cyan-2:#22d3ee;
+  --amber:#fbbf24;
+  --amber-soft:rgba(251,191,36,.14);
+  --violet:#a78bfa;
+  --pink:#f472b6;
+  --shadow:0 18px 50px -20px rgba(0,0,0,.7);
+  --r:18px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Hanken Grotesk",system-ui,sans-serif;
+  color:var(--text);
+  background:var(--ink);
+  line-height:1.55;
+  min-height:100vh;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* starfield + nebula */
+.cosmos{position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(1200px 700px at 78% -10%, rgba(124,99,255,.20), transparent 60%),
+    radial-gradient(900px 600px at 8% 12%, rgba(34,211,238,.13), transparent 55%),
+    radial-gradient(800px 800px at 50% 120%, rgba(244,114,182,.10), transparent 60%),
+    linear-gradient(180deg,#080b1c 0%, #0a0e23 40%, #0a0d20 100%);
+}
+.stars{position:fixed;inset:0;z-index:-1;opacity:.7;
+  background-image:
+    radial-gradient(1.4px 1.4px at 20% 30%, #fff, transparent),
+    radial-gradient(1.2px 1.2px at 70% 60%, #cfe0ff, transparent),
+    radial-gradient(1px 1px at 40% 80%, #fff, transparent),
+    radial-gradient(1.6px 1.6px at 85% 22%, #fff, transparent),
+    radial-gradient(1px 1px at 55% 12%, #bcd, transparent),
+    radial-gradient(1.2px 1.2px at 12% 70%, #fff, transparent),
+    radial-gradient(1px 1px at 90% 78%, #cfe0ff, transparent);
+  background-repeat:repeat;background-size:auto;
+  animation:drift 120s linear infinite;
+}
+@keyframes drift{to{background-position:600px 800px}}
+
+a{color:var(--cyan-2);text-decoration:none}
+a:hover{color:var(--cyan)}
+
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+.mono{font-family:"Space Mono",ui-monospace,monospace}
+
+/* ---------- LOGIN ---------- */
+#login{min-height:100vh;display:grid;place-items:center;padding:40px 22px}
+.login-card{
+  width:min(440px,100%);background:var(--panel);backdrop-filter:blur(14px);
+  border:1px solid var(--line);border-radius:var(--r);padding:38px 34px;
+  box-shadow:var(--shadow);text-align:center;
+  animation:rise .7s cubic-bezier(.2,.8,.2,1) both;
+}
+.badge{
+  width:74px;height:74px;margin:0 auto 18px;border-radius:50%;
+  display:grid;place-items:center;font-size:34px;
+  background:radial-gradient(circle at 35% 30%, #20306e, #0c1233 80%);
+  border:1px solid var(--line-bright);
+  box-shadow:0 0 0 6px rgba(94,234,212,.06), 0 0 40px -6px rgba(94,234,212,.4);
+}
+.brand{font-family:"Unbounded",sans-serif;font-weight:700;font-size:1.55rem;letter-spacing:-.02em;line-height:1.1}
+.brand .neuro{color:var(--text)}
+.brand .nauts{color:var(--cyan)}
+.tagline{color:var(--text-dim);font-size:.92rem;margin-top:8px}
+.kicker{font-family:"Space Mono",monospace;font-size:.7rem;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--text-faint);margin-bottom:14px}
+.field{text-align:left;margin-top:20px}
+.field label{display:block;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--text-faint);margin-bottom:8px;font-family:"Space Mono",monospace}
+.who{display:flex;gap:8px;flex-wrap:wrap}
+.who button{flex:1;min-width:96px;padding:12px 6px;border-radius:12px;cursor:pointer;
+  background:rgba(255,255,255,.03);border:1px solid var(--line);color:var(--text);
+  font-family:inherit;font-size:.95rem;font-weight:600;transition:.18s}
+.who button:hover{border-color:var(--line-bright);background:rgba(94,234,212,.08)}
+.who button.sel{background:linear-gradient(180deg,rgba(94,234,212,.22),rgba(34,211,238,.12));
+  border-color:var(--cyan);color:#fff;box-shadow:0 0 24px -8px var(--cyan)}
+input[type=password],input[type=text].search{
+  width:100%;padding:13px 14px;border-radius:12px;background:rgba(0,0,0,.25);
+  border:1px solid var(--line);color:var(--text);font-family:inherit;font-size:1rem;outline:none;transition:.18s}
+input[type=password]:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(94,234,212,.15)}
+.launch{margin-top:22px;width:100%;padding:14px;border:none;border-radius:12px;cursor:pointer;
+  font-family:"Unbounded",sans-serif;font-weight:600;font-size:.95rem;letter-spacing:.02em;color:#06241f;
+  background:linear-gradient(95deg,var(--cyan),var(--cyan-2));transition:.18s;
+  box-shadow:0 10px 30px -10px rgba(34,211,238,.6)}
+.launch:hover{transform:translateY(-1px);filter:brightness(1.06)}
+.err{color:var(--pink);font-size:.85rem;margin-top:12px;min-height:1em}
+.hint{color:var(--text-faint);font-size:.76rem;margin-top:16px}
+
+/* ---------- APP SHELL ---------- */
+#app{display:none}
+header.top{position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);
+  background:linear-gradient(180deg,rgba(8,11,28,.9),rgba(8,11,28,.55));
+  border-bottom:1px solid var(--line)}
+.top-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  max-width:1040px;margin:0 auto;padding:14px 22px}
+.top .brand{font-size:1.05rem}
+.greet{font-family:"Space Mono",monospace;font-size:.72rem;color:var(--text-dim);letter-spacing:.05em}
+.greet b{color:var(--cyan)}
+.logout{background:none;border:1px solid var(--line);color:var(--text-dim);
+  padding:7px 13px;border-radius:9px;cursor:pointer;font-family:"Space Mono",monospace;font-size:.7rem;letter-spacing:.1em}
+.logout:hover{border-color:var(--pink);color:var(--pink)}
+
+nav.tabs{display:flex;gap:4px;max-width:1040px;margin:0 auto;padding:10px 18px 0;flex-wrap:wrap}
+nav.tabs button{background:none;border:none;color:var(--text-faint);cursor:pointer;
+  padding:10px 16px;border-radius:10px 10px 0 0;font-family:inherit;font-size:.92rem;font-weight:600;transition:.16s}
+nav.tabs button:hover{color:var(--text)}
+nav.tabs button.active{color:var(--cyan);background:var(--panel);box-shadow:inset 0 -2px 0 var(--cyan)}
+
+main{padding:26px 0 80px}
+.view{display:none;animation:fade .4s ease both}
+.view.show{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+h2.section{font-family:"Unbounded",sans-serif;font-weight:600;font-size:1.35rem;letter-spacing:-.01em;margin-bottom:4px}
+.sub{color:var(--text-dim);font-size:.9rem;margin-bottom:20px}
+
+/* ---------- TODAY CARD ---------- */
+.today-card{background:var(--panel);border:1px solid var(--line-bright);border-radius:var(--r);
+  padding:26px 26px 22px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.today-card::before{content:"";position:absolute;inset:-2px;z-index:0;
+  background:radial-gradient(400px 200px at 90% -20%, rgba(94,234,212,.16), transparent 70%);pointer-events:none}
+.today-tag{font-family:"Space Mono",monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--cyan);display:inline-flex;align-items:center;gap:8px;position:relative}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);
+  animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.today-date{font-family:"Unbounded",sans-serif;font-size:1.5rem;margin:8px 0 2px;position:relative}
+.today-theme{color:var(--amber);font-size:.9rem;font-weight:600;position:relative}
+.blocks{display:grid;gap:12px;margin-top:18px;position:relative}
+.block{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:rgba(0,0,0,.18)}
+.block .lbl{font-family:"Space Mono",monospace;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:6px}
+.block.lab .lbl{color:var(--cyan)}
+.block.prog .lbl{color:var(--violet)}
+.block p{font-size:.95rem;color:var(--text)}
+.no-session{color:var(--text-dim);font-size:.95rem;margin-top:6px;position:relative}
+
+/* log controls */
+.log-row{display:flex;align-items:center;gap:12px;margin-top:18px;flex-wrap:wrap;position:relative}
+.check{display:inline-flex;align-items:center;gap:10px;cursor:pointer;user-select:none;font-weight:600;font-size:.92rem}
+.check input{position:absolute;opacity:0;width:0;height:0}
+.box{width:24px;height:24px;border-radius:7px;border:1.5px solid var(--line-bright);
+  display:grid;place-items:center;transition:.16s;color:transparent;font-size:.85rem}
+.check input:checked + .box{background:linear-gradient(180deg,var(--cyan),var(--cyan-2));border-color:var(--cyan);color:#06241f}
+.note{flex:1;min-width:220px}
+.note textarea{width:100%;min-height:46px;resize:vertical;padding:10px 12px;border-radius:10px;
+  background:rgba(0,0,0,.25);border:1px solid var(--line);color:var(--text);font-family:inherit;font-size:.9rem;outline:none}
+.note textarea:focus{border-color:var(--cyan)}
+.saved{font-family:"Space Mono",monospace;font-size:.68rem;color:var(--cyan);opacity:0;transition:.3s}
+.saved.on{opacity:1}
+
+/* progress bar */
+.progress-wrap{margin-top:22px}
+.bar{height:10px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden;border:1px solid var(--line)}
+.bar > i{display:block;height:100%;border-radius:99px;width:0;
+  background:linear-gradient(90deg,var(--cyan),var(--violet));transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.progress-wrap .meta{display:flex;justify-content:space-between;font-family:"Space Mono",monospace;
+  font-size:.72rem;color:var(--text-dim);margin-bottom:8px}
+
+/* ---------- SCHEDULE ---------- */
+.week{margin-bottom:26px}
+.week-head{display:flex;align-items:baseline;gap:12px;margin:0 2px 12px;flex-wrap:wrap}
+.week-num{font-family:"Unbounded",sans-serif;font-size:1.05rem;color:var(--text)}
+.week-theme{color:var(--amber);font-size:.85rem;font-weight:600}
+.day{display:grid;grid-template-columns:96px 1fr;gap:0;border:1px solid var(--line);
+  border-radius:14px;overflow:hidden;margin-bottom:8px;background:var(--panel);transition:.18s}
+.day:hover{border-color:var(--line-bright)}
+.day.is-today{border-color:var(--cyan);box-shadow:0 0 28px -10px var(--cyan)}
+.day .when{padding:14px 10px;text-align:center;border-right:1px solid var(--line);
+  background:rgba(0,0,0,.18);display:flex;flex-direction:column;justify-content:center}
+.day .when .dow{font-family:"Space Mono",monospace;font-size:.72rem;color:var(--text-faint);letter-spacing:.1em}
+.day .when .dnum{font-family:"Unbounded",sans-serif;font-size:1.2rem}
+.day .when .mon{font-size:.72rem;color:var(--text-dim)}
+.day .body{padding:13px 16px;font-size:.9rem}
+.day .body .prog{color:var(--text-dim)}
+.day .body .lab{color:var(--text);margin-top:6px}
+.day .body .lab b{color:var(--cyan);font-weight:600}
+.pill{display:inline-block;font-family:"Space Mono",monospace;font-size:.62rem;letter-spacing:.14em;
+  text-transform:uppercase;padding:3px 9px;border-radius:99px;margin-bottom:8px}
+.pill.lab{color:var(--cyan);background:rgba(94,234,212,.12);border:1px solid rgba(94,234,212,.3)}
+.pill.program{color:var(--violet);background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.3)}
+.pill.mixed{color:#9be7ff;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.3)}
+.pill.milestone{color:var(--amber);background:var(--amber-soft);border:1px solid rgba(251,191,36,.35)}
+.pill.holiday{color:var(--text-faint);background:rgba(255,255,255,.04);border:1px solid var(--line)}
+.day.holiday{opacity:.65}
+.todaymark{font-family:"Space Mono",monospace;font-size:.6rem;color:var(--cyan);letter-spacing:.12em}
+
+/* ---------- LIBRARY ---------- */
+.lib-controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;align-items:center}
+.search{flex:1;min-width:200px}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.filters button{background:rgba(255,255,255,.03);border:1px solid var(--line);color:var(--text-dim);
+  padding:8px 13px;border-radius:99px;cursor:pointer;font-family:inherit;font-size:.8rem;font-weight:600;transition:.16s}
+.filters button:hover{border-color:var(--line-bright);color:var(--text)}
+.filters button.on{background:rgba(94,234,212,.14);border-color:var(--cyan);color:var(--cyan)}
+.cat-group{margin-bottom:26px}
+.cat-title{font-family:"Unbounded",sans-serif;font-size:1rem;margin:0 2px 12px;display:flex;align-items:center;gap:10px}
+.cat-title span.n{font-family:"Space Mono",monospace;font-size:.7rem;color:var(--text-faint)}
+.paper{display:flex;gap:14px;border:1px solid var(--line);border-radius:14px;padding:16px 18px;
+  margin-bottom:10px;background:var(--panel);transition:.18s}
+.paper:hover{border-color:var(--line-bright);transform:translateY(-2px)}
+.paper.read{opacity:.62}
+.paper .read-toggle{flex:none}
+.paper .read-toggle .box{width:26px;height:26px}
+.paper .info{flex:1;min-width:0}
+.paper .ptitle{font-weight:600;font-size:1rem;line-height:1.35}
+.paper .ptitle a{color:var(--text)}
+.paper .ptitle a:hover{color:var(--cyan)}
+.paper .psrc{font-family:"Space Mono",monospace;font-size:.72rem;color:var(--text-faint);margin:5px 0 8px}
+.paper .pwhy{font-size:.88rem;color:var(--text-dim)}
+.paper .ptags{margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.lvl{font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:99px}
+.lvl.start{color:var(--cyan);background:rgba(94,234,212,.12);border:1px solid rgba(94,234,212,.3)}
+.lvl.core{color:var(--violet);background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.3)}
+.lvl.deep{color:var(--amber);background:var(--amber-soft);border:1px solid rgba(251,191,36,.3)}
+.open-link{font-family:"Space Mono",monospace;font-size:.7rem;color:var(--cyan-2);letter-spacing:.06em}
+
+/* ---------- GLOSSARY ---------- */
+.glossary{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.gloss{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:var(--panel);transition:.18s}
+.gloss:hover{border-color:var(--line-bright)}
+.gloss dt{font-family:"Unbounded",sans-serif;font-size:.92rem;color:var(--cyan);margin-bottom:6px}
+.gloss dd{font-size:.86rem;color:var(--text-dim)}
+
+footer{border-top:1px solid var(--line);padding:22px;text-align:center;
+  color:var(--text-faint);font-family:"Space Mono",monospace;font-size:.7rem;letter-spacing:.06em}
+
+@media (max-width:560px){
+  .today-date{font-size:1.25rem}
+  nav.tabs button{padding:9px 12px;font-size:.85rem}
+}
+
+/* ---------- library header (added) ---------- */
+.lib-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.read-count{flex:none;color:var(--cyan);font-size:.72rem;letter-spacing:.06em;
+  border:1px solid rgba(94,234,212,.3);background:rgba(94,234,212,.1);
+  padding:7px 13px;border-radius:99px;white-space:nowrap;margin-top:4px}
+
+</style>
+</head>
+<body>
+<div class="cosmos"></div>
+<div class="stars"></div>
+
+<!-- ===================== LOGIN ===================== -->
+<section id="login">
+  <div class="login-card">
+    <div class="badge">&#129528;</div>
+    <div class="kicker">Reading Room</div>
+    <div class="brand"><span class="neuro">Neuro</span><span class="nauts">Nauts</span></div>
+    <div class="tagline">Scholars Program &middot; <span id="brand-cohort"></span></div>
+
+    <div class="field">
+      <label>Who is logging in?</label>
+      <div class="who" id="who"></div>
+    </div>
+    <div class="field">
+      <label>Program passcode</label>
+      <input type="password" id="pass" placeholder="Enter passcode" autocomplete="off">
+    </div>
+    <button class="launch" id="launch">Enter the reading room &#128214;</button>
+    <div class="err" id="err"></div>
+    <div class="hint">Your "read" checkmarks are saved on this device only.</div>
+  </div>
+</section>
+
+<!-- ===================== APP ===================== -->
+<div id="app">
+  <header class="top">
+    <div class="top-inner">
+      <div class="brand"><span class="neuro">Neuro</span><span class="nauts">Nauts</span></div>
+      <div style="display:flex;align-items:center;gap:14px">
+        <span class="greet">scholar :: <b id="greet-name"></b> &middot; <span id="brand-mentor"></span></span>
+        <button class="logout" id="logout">log out</button>
+      </div>
+    </div>
+    <nav class="tabs">
+      <button data-view="library" class="active">Paper Library</button>
+      <button data-view="glossary">Glossary</button>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <!-- LIBRARY -->
+    <section id="view-library" class="view show">
+      <div class="lib-head">
+        <div>
+          <h2 class="section">Paper library</h2>
+          <p class="sub">Start with the green "start here" papers, then work toward the deep dives. Check a paper off once you have read it.</p>
+        </div>
+        <span class="read-count mono" id="read-count">0 read</span>
+      </div>
+      <div class="lib-controls">
+        <input type="text" id="lib-search" class="search" placeholder="Search titles and topics...">
+      </div>
+      <div class="filters" id="filters"></div>
+      <div id="library"></div>
+    </section>
+
+    <!-- GLOSSARY -->
+    <section id="view-glossary" class="view">
+      <h2 class="section">Field glossary</h2>
+      <p class="sub">Quick definitions for the words you will hear most this summer.</p>
+      <dl class="glossary" id="glossary"></dl>
+    </section>
+  </main>
+
+  <footer>NeuroNauts Scholars Program &middot; supported by NIH NINDS R25 &middot; University of West Florida</footer>
+</div>
+
+<script>
+/* ---- data ---- */
+/* ============================================================================
+   NeuroNauts Reading Room  ::  DATA + CONFIG
+   ----------------------------------------------------------------------------
+   EDIT THIS FILE to change scholars, the passcode, the reading list, or the
+   glossary. No build step. Save, commit, push.
+
+   PRIVACY: GitHub Pages is public and everything here is visible in the page
+   source. These scholars are minors. Use first names or callsigns only. No
+   last names, schools, photos, or emails. The passcode is a soft gate, not
+   real security.
+============================================================================ */
+
+const CONFIG = {
+  cohort: "Cohort 1  ::  Summer 2026",
+  mentor: "Dr. Guttmann",
+  passcode: "synapse2026",            // change this and share with your scholars
+  scholars: ["Lukas", "Victoria", "Francesca"]
+};
+
+/* ---- Reading library --------------------------------------------------------
+   cat:   the category heading a paper sits under (see ORDER in app.js)
+   level: "start" (start here) | "core" | "deep" (deep dive)
+   Add or remove entries freely.                                                */
+const PAPERS = [
+
+  // ===== OUR PROJECT: phage display meets Alzheimer's =====
+  { id:"op-thno22", cat:"Our Project", level:"start",
+    title:"Phage display derived peptides for Alzheimer's disease therapy and diagnosis",
+    source:"Theranostics, 2022",
+    why:"The best single map of what our lab does. Read this first to see how phage display turns into an Alzheimer's biomarker tool.",
+    url:"https://www.thno.org/v12p2041.htm" },
+  { id:"op-art24", cat:"Our Project", level:"core",
+    title:"High-affinity antibodies to the core region of tau with diagnostic and therapeutic potential for AD",
+    source:"Alzheimer's Research and Therapy, 2024",
+    why:"A real biopanning campaign that selects antibodies against disease relevant tau. A close cousin of your summer project.",
+    url:"https://link.springer.com/article/10.1186/s13195-024-01561-1" },
+
+  // ===== PHAGE DISPLAY =====
+  { id:"pd-nobel", cat:"Phage Display", level:"start",
+    title:"Phage Display: Simple Evolution in a Petri Dish (Nobel Lecture)",
+    source:"George P. Smith, 2018 Nobel Prize in Chemistry",
+    why:"The origin story, told by the man who won the Nobel for it. Short and genuinely fun.",
+    url:"https://www.nobelprize.org/prizes/chemistry/2018/smith/lecture/" },
+  { id:"pd-basics", cat:"Phage Display", level:"core",
+    title:"Basics of Antibody Phage Display Technology",
+    source:"Toxins (review), 2018",
+    why:"The clearest walk through the M13 phage, library types, and the rounds of panning you will run at the bench.",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC6024766/" },
+  { id:"pd-evo", cat:"Phage Display", level:"deep",
+    title:"Evolution of phage display libraries for therapeutic antibody discovery",
+    source:"mAbs (review), 2023",
+    why:"How three generations of libraries were designed. Read once the basics feel comfortable.",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC10210849/" },
+  { id:"pd-phipseq", cat:"Phage Display", level:"deep",
+    title:"Phage Immunoprecipitation and Sequencing (PhIP-seq) for mapping the antibody reactome",
+    source:"Review, 2024",
+    why:"A modern, high throughput spin on phage display used to fish out disease antibodies. A glimpse of where the field is heading.",
+    url:"https://pubmed.ncbi.nlm.nih.gov/39168282/" },
+
+  // ===== TAU BIOLOGY AND PATHOLOGY =====
+  { id:"tau-adv", cat:"Tau Biology", level:"start",
+    title:"Advances in the Pathogenesis of AD: Focusing on Tau-Mediated Neurodegeneration",
+    source:"Review, 2013",
+    why:"A friendly overview of what tau normally does, what hyperphosphorylation breaks, and how tangles form.",
+    url:"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3598890/" },
+  { id:"tau-central", cat:"Tau Biology", level:"core",
+    title:"The central role of tau in Alzheimer's disease: from tangle maturation to cell death",
+    source:"Brain Research Bulletin (review), 2023",
+    why:"Makes the case that tau is a driver, not a bystander. A good bridge from biology to disease.",
+    url:"https://pubmed.ncbi.nlm.nih.gov/36244581/" },
+  { id:"tau-cryo", cat:"Tau Biology", level:"deep",
+    title:"Cryo-EM structures of tau filaments from Alzheimer's disease",
+    source:"Fitzpatrick et al., Nature, 2017",
+    why:"The first atomic-resolution look at a tangle, straight from a patient's brain. Worth it for the images alone.",
+    url:"https://www.nature.com/articles/nature23002" },
+  { id:"tau-spread", cat:"Tau Biology", level:"deep",
+    title:"Spread of pathological tau through communicating neurons in human AD",
+    source:"Nature Communications, 2020",
+    why:"How tau pathology travels region to region. The reasoning behind tau-targeting therapies.",
+    url:"https://www.nature.com/articles/s41467-020-15701-2" },
+
+  // ===== AMYLOID BIOLOGY =====
+  { id:"amy-25", cat:"Amyloid Biology", level:"start",
+    title:"The amyloid hypothesis of Alzheimer's disease at 25 years",
+    source:"Selkoe and Hardy, EMBO Molecular Medicine, 2016",
+    why:"The big idea that shaped the whole field, reviewed by two of the people who built it. Pairs naturally with the tau story.",
+    url:"https://www.embopress.org/doi/full/10.15252/emmm.201606210" },
+  { id:"amy-appraisal", cat:"Amyloid Biology", level:"deep",
+    title:"The amyloid cascade hypothesis: an appraisal for the development of therapeutics",
+    source:"Karran et al., Nature Reviews Drug Discovery, 2011",
+    why:"A careful, skeptical look at the dominant theory. Good practice in reading a paper that argues with the textbook.",
+    url:"https://www.nature.com/articles/nrd3505" },
+
+  // ===== NEUROIMMUNOLOGY AND MICROGLIA =====
+  { id:"ni-micro", cat:"Neuroimmunology and Microglia", level:"start",
+    title:"The effects of microglia-associated neuroinflammation on Alzheimer's disease",
+    source:"Frontiers in Immunology (review), 2023",
+    why:"The brain's immune cells and how their inflammation feeds into Alzheimer's. A great entry to the neuroimmune side.",
+    url:"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9992739/" },
+  { id:"ni-trem2", cat:"Neuroimmunology and Microglia", level:"core",
+    title:"Microglial TREM2 at the intersection of brain aging and Alzheimer's disease",
+    source:"The Neuroscientist (review), 2023",
+    why:"TREM2 is one of the strongest genetic clues we have. This connects a single receptor to microglia, aging, and risk.",
+    url:"https://pubmed.ncbi.nlm.nih.gov/34470515/" },
+
+  // ===== ALZHEIMER'S BIOMARKERS =====
+  { id:"bm-ptau217", cat:"AD Biomarkers", level:"start",
+    title:"P-tau217 as a Reliable Blood-Based Marker of Alzheimer's Disease",
+    source:"Biomedicines (review), 2024",
+    why:"The hottest blood biomarker right now, at a readable level. Tie this to why specificity matters in our assays.",
+    url:"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11351463/" },
+  { id:"bm-sysrev", cat:"AD Biomarkers", level:"core",
+    title:"Blood-Based Amyloid-beta and Phosphorylated Tau Biomarkers in AD: A Systematic Review",
+    source:"Cureus (systematic review), 2025",
+    why:"A broad current snapshot of how blood biomarkers stack up against spinal fluid and imaging.",
+    url:"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11956846/" },
+  { id:"bm-guideline", cat:"AD Biomarkers", level:"deep",
+    title:"Clinical Practice Guideline on the use of blood-based biomarkers for suspected AD",
+    source:"Alzheimer's Association, Alzheimer's and Dementia, 2025",
+    why:"How the field decides a biomarker is good enough for the clinic. The standard your work aims toward.",
+    url:"https://alz-journals.onlinelibrary.wiley.com/doi/10.1002/alz.70535" },
+
+  // ===== NEUROPATHOLOGY AND DIAGNOSTIC CRITERIA =====
+  { id:"np-overview", cat:"Neuropathology and Criteria", level:"start",
+    title:"Criteria for Diagnosis and Staging of Alzheimer's Disease (plain-language overview)",
+    source:"Alzheimer's Association",
+    why:"Start here for the big picture: what counts as Alzheimer's and how it is staged today.",
+    url:"https://www.alz.org/research/for_researchers/diagnostic-criteria-guidelines" },
+  { id:"np-diagnosis", cat:"Neuropathology and Criteria", level:"core",
+    title:"The neuropathological diagnosis of Alzheimer's disease",
+    source:"Molecular Neurodegeneration (review), 2019",
+    why:"Plaques, tangles, Braak staging, and the ABC scoring system, explained clearly. The view from under the microscope.",
+    url:"https://link.springer.com/article/10.1186/s13024-019-0333-5" },
+  { id:"np-jack24", cat:"Neuropathology and Criteria", level:"core",
+    title:"Revised criteria for diagnosis and staging of Alzheimer's disease (AA Workgroup)",
+    source:"Jack et al., Alzheimer's and Dementia, 2024",
+    why:"The current framework that defines Alzheimer's by its biology, with biomarkers at the center.",
+    url:"https://alz-journals.onlinelibrary.wiley.com/doi/10.1002/alz.13859" },
+
+  // ===== TREATMENTS AND TRANSLATION =====
+  { id:"tx-lecanemab", cat:"Treatments and Translation", level:"core",
+    title:"Lecanemab in Early Alzheimer's Disease (CLARITY AD trial)",
+    source:"van Dyck et al., New England Journal of Medicine, 2023",
+    why:"The landmark trial of an anti-amyloid antibody. Notice that the drug itself is an antibody, the same class of molecule you are selecting for.",
+    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2212948" },
+
+  // ===== LAB METHODS AND RIGOR =====
+  { id:"lm-repro", cat:"Lab Methods and Rigor", level:"start",
+    title:"1,500 scientists lift the lid on reproducibility",
+    source:"Baker, Nature (news feature), 2016",
+    why:"Why so much published science does not replicate, and why your careful notebook and replicates matter.",
+    url:"https://www.nature.com/articles/533452a" },
+  { id:"lm-abvalid", cat:"Lab Methods and Rigor", level:"core",
+    title:"A proposal for validation of antibodies (the five pillars)",
+    source:"Uhlen et al., Nature Methods, 2016",
+    why:"How to prove an antibody really binds what you think it binds. This is the heart of a specificity experiment.",
+    url:"https://www.nature.com/articles/nmeth.3995" },
+  { id:"lm-immunoassay", cat:"Lab Methods and Rigor", level:"deep",
+    title:"A Practical Guide to Immunoassay Method Validation",
+    source:"Andreasson et al., Frontiers in Neurology, 2015",
+    why:"A hands-on guide to validating an ELISA: precision, accuracy, dilution, and the numbers that make a result trustworthy.",
+    url:"https://www.frontiersin.org/articles/10.3389/fneur.2015.00179/full" }
+];
+
+/* ---- Glossary --------------------------------------------------------------- */
+const GLOSSARY = [
+  { term:"Tau", def:"A protein that normally stabilizes the tracks (microtubules) inside neurons. In Alzheimer's it becomes altered and clumps together." },
+  { term:"Phosphorylated tau (p-tau)", def:"Tau with extra phosphate groups attached. Versions like p-tau217 rise early in Alzheimer's and make strong biomarkers." },
+  { term:"Neurofibrillary tangle (NFT)", def:"A tangle of misfolded tau inside a neuron. One of the two classic Alzheimer's lesions." },
+  { term:"Amyloid-beta", def:"A peptide that builds into plaques outside neurons. The other classic Alzheimer's lesion." },
+  { term:"Amyloid cascade hypothesis", def:"The long dominant idea that amyloid-beta buildup is the first domino that sets the rest of Alzheimer's in motion." },
+  { term:"Protofibril / oligomer", def:"Small, soluble clumps of amyloid-beta, thought to be especially toxic. The drug lecanemab targets these." },
+  { term:"Biomarker", def:"Something measurable (in blood, spinal fluid, or on a scan) that reflects what is happening in the body." },
+  { term:"Phage display", def:"A method that puts proteins on the surface of viruses (phage) so you can fish out the ones that bind your target." },
+  { term:"Biopanning", def:"The rounds of binding, washing, and eluting that enrich a phage library for the best binders." },
+  { term:"Epitope", def:"The exact small region of a target that an antibody or peptide grabs onto." },
+  { term:"ELISA", def:"A plate based assay that uses a color change to measure how much something binds. Your main readout this summer." },
+  { term:"Specificity", def:"Whether your binder grabs only the thing you want (modified tau) and not the look-alikes (unmodified tau)." },
+  { term:"Monoclonal antibody", def:"A single, uniform antibody that recognizes one epitope. Many drugs and tests are built from these." },
+  { term:"Antibody validation", def:"The evidence that an antibody truly binds its intended target and nothing else. The five pillars are a common standard." },
+  { term:"Microglia", def:"The brain's resident immune cells. They clean up debris and, when overactive, drive neuroinflammation." },
+  { term:"TREM2", def:"A receptor on microglia. Certain rare variants raise Alzheimer's risk, linking the immune system to the disease." },
+  { term:"Braak staging", def:"A scale describing how far tau tangles have spread through the brain, stage I through VI." },
+  { term:"ABC score", def:"The standard neuropathology scoring of Alzheimer's: Amyloid, Braak tangle stage, and CERAD plaque score." },
+  { term:"ATN framework", def:"Classifying Alzheimer's by Amyloid, Tau, and Neurodegeneration biomarkers rather than by symptoms alone." },
+  { term:"Calpain", def:"A calcium-activated protease (protein cutter) that can clip tau and other proteins. A long running theme in this lab." },
+  { term:"Cryo-EM", def:"Cryo-electron microscopy. Flash freezing molecules to image them at near-atomic detail, used to solve tangle structure." },
+  { term:"Reproducibility", def:"Whether an experiment gives the same answer when repeated. The reason for replicates, controls, and clean records." }
+];
+
+/* ---- app ---- */
+/* ============================================================================
+   NeuroNauts Reading Room  ::  APP LOGIC  (vanilla JS, no build step)
+============================================================================ */
+(function () {
+  "use strict";
+
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const KEY = "neuronauts:v2";
+
+  // order categories appear in the library
+  const ORDER = [
+    "Our Project", "Phage Display", "Tau Biology", "Amyloid Biology",
+    "Neuroimmunology and Microglia", "AD Biomarkers", "Neuropathology and Criteria",
+    "Treatments and Translation", "Lab Methods and Rigor"
+  ];
+
+  let scholar = null;
+  let selectedName = null;
+  let libFilter = "all";
+  let libQuery = "";
+
+  /* ---------- storage (per scholar, this browser) ---------- */
+  function store() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
+  function save(d) { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) {} }
+  function userData() { const d = store(); d[scholar] = d[scholar] || { read: {} }; return d; }
+
+  /* ---------- LOGIN ---------- */
+  function buildLogin() {
+    const who = $("#who");
+    who.innerHTML = "";
+    CONFIG.scholars.forEach(name => {
+      const b = document.createElement("button");
+      b.textContent = name;
+      b.onclick = () => {
+        selectedName = name;
+        $$("#who button").forEach(x => x.classList.remove("sel"));
+        b.classList.add("sel");
+        $("#err").textContent = "";
+      };
+      who.appendChild(b);
+    });
+    $("#brand-cohort").textContent = CONFIG.cohort;
+    $("#pass").addEventListener("keydown", e => { if (e.key === "Enter") attempt(); });
+    $("#launch").onclick = attempt;
+    const last = store()._session;
+    if (last && CONFIG.scholars.includes(last)) { scholar = last; enterApp(); }
+  }
+
+  function attempt() {
+    if (!selectedName) { $("#err").textContent = "Pick your name first, explorer."; return; }
+    if ($("#pass").value.trim() !== CONFIG.passcode) {
+      $("#err").textContent = "That passcode does not match. Ask " + CONFIG.mentor + ".";
+      return;
+    }
+    scholar = selectedName;
+    const d = store(); d._session = scholar; save(d);
+    enterApp();
+  }
+
+  function enterApp() {
+    $("#login").style.display = "none";
+    $("#app").style.display = "block";
+    $("#greet-name").textContent = scholar;
+    buildLibrary();
+    buildGlossary();
+    showView("library");
+  }
+
+  function logout() { const d = store(); delete d._session; save(d); location.reload(); }
+
+  /* ---------- TABS ---------- */
+  function showView(id) {
+    $$(".view").forEach(v => v.classList.toggle("show", v.id === "view-" + id));
+    $$("nav.tabs button").forEach(b => b.classList.toggle("active", b.dataset.view === id));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  /* ---------- LIBRARY ---------- */
+  function buildLibrary() {
+    const fwrap = $("#filters");
+    const present = Array.from(new Set(PAPERS.map(p => p.cat)));
+    const cats = ["all", ...ORDER.filter(c => present.includes(c)), ...present.filter(c => !ORDER.includes(c))];
+    fwrap.innerHTML = "";
+    cats.forEach(cat => {
+      const b = document.createElement("button");
+      b.textContent = cat === "all" ? "All topics" : cat;
+      b.className = cat === libFilter ? "on" : "";
+      b.onclick = () => { libFilter = cat; $$("#filters button").forEach(x => x.classList.remove("on")); b.classList.add("on"); renderLibrary(); };
+      fwrap.appendChild(b);
+    });
+    $("#lib-search").addEventListener("input", e => { libQuery = e.target.value.toLowerCase(); renderLibrary(); });
+    renderLibrary();
+  }
+
+  function renderLibrary() {
+    const wrap = $("#library");
+    const ud = userData();
+    let list = PAPERS.slice();
+    if (libFilter !== "all") list = list.filter(p => p.cat === libFilter);
+    if (libQuery) list = list.filter(p =>
+      (p.title + " " + p.source + " " + p.why + " " + p.cat).toLowerCase().includes(libQuery));
+
+    // running count of read papers (whole library)
+    const totalRead = PAPERS.filter(p => ud[scholar].read[p.id]).length;
+    $("#read-count").textContent = totalRead + " of " + PAPERS.length + " read";
+
+    if (!list.length) { wrap.innerHTML = '<p class="sub">No papers match that search.</p>'; return; }
+
+    const groups = {};
+    list.forEach(p => { (groups[p.cat] = groups[p.cat] || []).push(p); });
+    const orderedCats = Object.keys(groups).sort((a, b) => {
+      const ia = ORDER.indexOf(a), ib = ORDER.indexOf(b);
+      return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+    });
+
+    let html = "";
+    orderedCats.forEach(cat => {
+      html += '<div class="cat-group"><div class="cat-title">' + cat + ' <span class="n">' + groups[cat].length + ' papers</span></div>';
+      groups[cat].forEach(p => {
+        const read = !!ud[scholar].read[p.id];
+        const lvl = { start: "Start here", core: "Core read", deep: "Deep dive" }[p.level];
+        html += '<div class="paper ' + (read ? "read" : "") + '" data-id="' + p.id + '">' +
+          '<label class="check read-toggle" title="Mark as read">' +
+            '<input type="checkbox" data-read="' + p.id + '" ' + (read ? "checked" : "") + '>' +
+            '<span class="box">&#10003;</span>' +
+          '</label>' +
+          '<div class="info">' +
+            '<div class="ptitle"><a href="' + p.url + '" target="_blank" rel="noopener">' + p.title + '</a></div>' +
+            '<div class="psrc">' + p.source + '</div>' +
+            '<div class="pwhy">' + p.why + '</div>' +
+            '<div class="ptags">' +
+              '<span class="lvl ' + p.level + '">' + lvl + '</span>' +
+              '<a class="open-link" href="' + p.url + '" target="_blank" rel="noopener">open paper &rarr;</a>' +
+            '</div>' +
+          '</div></div>';
+      });
+      html += "</div>";
+    });
+    wrap.innerHTML = html;
+
+    $$("[data-read]").forEach(cb => cb.addEventListener("change", e => {
+      const id = e.target.dataset.read;
+      const d = userData();
+      if (e.target.checked) d[scholar].read[id] = true; else delete d[scholar].read[id];
+      save(d);
+      e.target.closest(".paper").classList.toggle("read", e.target.checked);
+      const tot = PAPERS.filter(p => d[scholar].read[p.id]).length;
+      $("#read-count").textContent = tot + " of " + PAPERS.length + " read";
+    }));
+  }
+
+  /* ---------- GLOSSARY ---------- */
+  function buildGlossary() {
+    $("#glossary").innerHTML = GLOSSARY.map(g =>
+      '<div class="gloss"><dt>' + g.term + '</dt><dd>' + g.def + '</dd></div>').join("");
+  }
+
+  /* ---------- boot ---------- */
+  document.addEventListener("DOMContentLoaded", () => {
+    $("#brand-mentor").textContent = CONFIG.mentor + "'s lab";
+    buildLogin();
+    $("#logout").onclick = logout;
+    $$("nav.tabs button").forEach(b => b.onclick = () => showView(b.dataset.view));
+  });
+})();
+
+</script>
+</body>
+</html>
