@@ -335,6 +335,70 @@ footer{border-top:1px solid var(--line);padding:22px;text-align:center;
 /* ---------- GLOSSARY GROUPS ---------- */
 .gloss-group{margin-bottom:24px}
 
+/* ---------- ASK ME ---------- */
+.ask-bar{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.ask-bar .search{flex:1;min-width:220px}
+.ask-go{flex:none;padding:13px 24px;margin-top:0}
+.ask-examples-wrap{margin-bottom:18px}
+.ask-lbl{display:block;font-family:"Space Mono",monospace;font-size:.66rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--text-faint);margin-bottom:8px}
+.ask-chips{display:flex;flex-wrap:wrap;gap:8px}
+.ask-chip{background:rgba(255,255,255,.03);border:1px solid var(--line);color:var(--text-dim);
+  padding:8px 13px;border-radius:99px;cursor:pointer;font-family:inherit;font-size:.82rem;transition:.16s}
+.ask-chip:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(94,234,212,.08)}
+.ask-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:14px;animation:fade .35s ease both}
+.ask-card.primary{border-color:var(--line-bright);box-shadow:var(--shadow)}
+.ask-card.secondary{padding:16px 18px;background:rgba(255,255,255,.02)}
+.ask-card.weak{border-style:dashed}
+.ask-q{font-family:"Unbounded",sans-serif;font-size:1.05rem;color:var(--cyan);margin-bottom:10px;line-height:1.3}
+.ask-card.secondary .ask-q{font-size:.92rem}
+.ask-a{font-size:.95rem;color:var(--text);line-height:1.6}
+.ask-terms{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.term-chip{background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.3);color:var(--violet);
+  padding:4px 11px;border-radius:99px;cursor:pointer;font-family:"Space Mono",monospace;font-size:.66rem;transition:.16s}
+.term-chip:hover{background:rgba(167,139,250,.2);color:#fff}
+.ask-reading{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.ask-reading a{display:block;font-size:.86rem;margin-top:5px}
+.ask-more-h{font-family:"Space Mono",monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--text-faint);margin:18px 0 10px}
+.ask-fallback{color:var(--text-dim);font-size:.95rem;margin-bottom:12px}
+.ask-note{color:var(--text-faint);font-size:.84rem;margin-top:12px}
+
+/* ---------- QUIZ ---------- */
+.quiz-start{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px}
+.quiz-best{color:var(--cyan);font-size:.78rem;margin-bottom:16px}
+.quiz-launch,.quiz-start .launch{margin-top:18px;max-width:260px}
+.quiz-run{background:var(--panel);border:1px solid var(--line-bright);border-radius:16px;padding:22px 24px;box-shadow:var(--shadow)}
+.quiz-bar{margin-bottom:16px}
+.quiz-bar-meta{display:flex;justify-content:space-between;color:var(--text-dim);font-size:.72rem;margin-bottom:8px}
+.quiz-cat{color:var(--violet);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
+.quiz-q{font-family:"Unbounded",sans-serif;font-size:1.12rem;line-height:1.4;margin-bottom:18px}
+.quiz-opts{display:grid;gap:10px}
+.quiz-opt{text-align:left;background:rgba(255,255,255,.03);border:1px solid var(--line);color:var(--text);
+  padding:14px 16px;border-radius:12px;cursor:pointer;font-family:inherit;font-size:.95rem;transition:.16s}
+.quiz-opt:hover:not(:disabled){border-color:var(--cyan);background:rgba(94,234,212,.07)}
+.quiz-opt:disabled{cursor:default;opacity:.85}
+.quiz-opt.right{border-color:#34d399;background:rgba(52,211,153,.16);color:#fff}
+.quiz-opt.wrong{border-color:var(--pink);background:rgba(244,114,182,.14);color:#fff}
+.quiz-feed{margin-top:16px}
+.feed-line{font-family:"Unbounded",sans-serif;font-size:1rem;margin-bottom:6px}
+.feed-line.ok{color:#34d399}
+.feed-line.no{color:var(--pink)}
+.feed-explain{font-size:.92rem;color:var(--text-dim);line-height:1.55}
+.quiz-next{margin-top:16px;max-width:240px}
+.quiz-result{background:var(--panel);border:1px solid var(--line-bright);border-radius:16px;padding:26px 24px;text-align:center;box-shadow:var(--shadow)}
+.quiz-score{color:var(--text-dim);font-size:.9rem}
+.quiz-pct{font-family:"Unbounded",sans-serif;font-size:3rem;line-height:1;margin:4px 0 10px;
+  background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.quiz-msg{color:var(--text);font-size:.98rem;max-width:520px;margin:0 auto 16px}
+.quiz-result .launch{max-width:220px;margin:0 auto}
+.quiz-review{margin-top:24px;text-align:left}
+.rev-item{background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px}
+.rev-q{font-weight:600;font-size:.92rem;margin-bottom:6px}
+.rev-a{font-size:.88rem;color:#34d399;margin-bottom:6px}
+.rev-a b{color:#34d399}
+.rev-e{font-size:.86rem;color:var(--text-dim)}
+
 </style>
 </head>
 <body>
@@ -374,6 +438,8 @@ footer{border-top:1px solid var(--line);padding:22px;text-align:center;
     </div>
     <nav class="tabs">
       <button data-view="library" class="active">Paper Library</button>
+      <button data-view="ask">Ask Me</button>
+      <button data-view="quiz">Test My Knowledge</button>
       <button data-view="history">History of AD</button>
       <button data-view="anatomy">Brain Anatomy</button>
       <button data-view="glossary">Glossary</button>
@@ -393,6 +459,24 @@ footer{border-top:1px solid var(--line);padding:22px;text-align:center;
       <div class="lib-controls"><input type="text" id="lib-search" class="search" placeholder="Search titles and topics..."></div>
       <div class="filters" id="filters"></div>
       <div id="library"></div>
+    </section>
+
+    <!-- ASK ME -->
+    <section id="view-ask" class="view">
+      <h2 class="section">Ask me</h2>
+      <p class="sub">Ask a question about phage display, tau, amyloid, biomarkers, the brain, or our project. This tutor answers from the program's built-in notes and points you to the papers. For anything beyond that, take it to your mentors.</p>
+      <div class="ask-bar">
+        <input type="text" id="ask-input" class="search" placeholder="for example: what is tau? how does biopanning work?">
+        <button class="launch ask-go" id="ask-go">Ask</button>
+      </div>
+      <div class="ask-examples-wrap"><span class="ask-lbl">Try one of these</span><div class="ask-chips" id="ask-examples"></div></div>
+      <div id="ask-answer"></div>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="view-quiz" class="view">
+      <h2 class="section">Test my knowledge</h2>
+      <div id="quiz"></div>
     </section>
 
     <!-- HISTORY -->
@@ -470,7 +554,7 @@ footer{border-top:1px solid var(--line);padding:22px;text-align:center;
 </div>
 
 <script>
-/* ---- data ---- */
+/* data */
 /* ============================================================================
    NeuroNauts Reading Room  ::  DATA + CONFIG
    ----------------------------------------------------------------------------
@@ -772,7 +856,267 @@ const GLOSSARY = [
   { cat:"Clinical and Treatment", term:"TREM2", def:"A receptor on microglia. Certain rare variants raise Alzheimer's risk." }
 ];
 
-/* ---- app ---- */
+/* tutor */
+/* ============================================================================
+   NeuroNauts Reading Room  ::  TUTOR  (Ask Me knowledge base + Quiz bank)
+   ----------------------------------------------------------------------------
+   This is a built-in, offline tutor. It does not call the internet. The
+   "Ask Me" box matches a student's question against the entries below and
+   returns the best teaching answer plus related papers. EDIT freely: each
+   entry has keywords (for matching), an answer, paper ids, and glossary terms.
+============================================================================ */
+
+const KB = [
+  { id:"k-phage-what", q:"What is phage display?",
+    keywords:["phage","display","phages","bacteriophage","m13","library","virus"],
+    a:"Phage display is a lab method for finding proteins that stick to a target. You start with billions of bacteriophages, harmless viruses that infect bacteria, and each one carries a different short protein or antibody piece on its surface, linked to the gene that encodes it. Because the outside protein is tied to the inside gene, once you find a phage that binds your target you can read off exactly which protein did the binding. George Smith won a share of the 2018 Nobel Prize for inventing it.",
+    papers:["pd-nobel","pd-basics","op-thno22"], terms:["Phage display","Biopanning","Epitope"] },
+  { id:"k-panning", q:"How does biopanning work?",
+    keywords:["panning","biopanning","select","selection","enrich","wash","elute","rounds"],
+    a:"Biopanning is the heart of phage display. You expose the phage library to your target, wash away everything that does not stick, then collect the few phages that held on. You grow those up and repeat for several rounds. Each round enriches the pool for the best binders, a lot like panning for gold by washing away the sand until the heavy nuggets remain.",
+    papers:["pd-basics","pd-evo"], terms:["Biopanning","Phage display","Epitope"] },
+  { id:"k-why-phage", q:"Why use phage display instead of animals?",
+    keywords:["why","animals","mice","immunize","advantage","benefit","instead"],
+    a:"Classic antibody making immunizes an animal and harvests its immune response. Phage display does the selection in a dish instead, which is faster, cheaper, avoids using animals, and lets you control exactly what you select against. That control is one reason so many approved antibody drugs now come from phage display.",
+    papers:["pd-basics","pd-evo"], terms:["Phage display","Monoclonal antibody"] },
+  { id:"k-epitope", q:"What is an epitope?",
+    keywords:["epitope","bind","binds","region","site","recognize","patch"],
+    a:"An epitope is the exact small patch on a target that an antibody or peptide actually grabs. A target protein can have many possible epitopes, and which one your binder recognizes decides how specific it is. In our project we care about epitopes that exist only on the disease form of tau, not the normal form.",
+    papers:["op-art24","pd-basics"], terms:["Epitope","Specificity","Monoclonal antibody"] },
+  { id:"k-elisa", q:"What is an ELISA and how do we read it?",
+    keywords:["elisa","assay","plate","color","absorbance","readout","signal"],
+    a:"An ELISA is a plate based test that turns binding into a color you can measure. You coat a well with your target, add your binder, then add a detection step that makes color where binding happened. More color means more binding. It is your main readout this summer, and a clean dilution series gives you a curve instead of a single dot.",
+    papers:["lm-immunoassay","op-art24"], terms:["ELISA","Specificity","Reproducibility"] },
+  { id:"k-specificity", q:"What is specificity and why does it matter?",
+    keywords:["specificity","specific","selective","cross","reactivity","matter"],
+    a:"Specificity means your binder grabs only the thing you want and ignores the look-alikes. For our lab that means binding the modified, disease form of tau but not the normal form. Without specificity a biomarker test would light up in healthy people too, which would make it useless. Proving specificity is the central goal of your experiments.",
+    papers:["lm-abvalid","op-art24"], terms:["Specificity","Antibody validation","Epitope"] },
+  { id:"k-abvalid", q:"How do you prove an antibody is good?",
+    keywords:["validation","validate","prove","pillars","reliable","trust","good"],
+    a:"You validate it. A 2016 working group proposed five pillars, different independent ways to show an antibody truly binds its intended target and nothing else. The simplest ideas: test it against samples that do and do not contain the target, compare it to a second independent method, and show it gives the same answer when repeated. Weak antibodies are a big reason some published results do not hold up.",
+    papers:["lm-abvalid","lm-repro"], terms:["Antibody validation","Specificity","Reproducibility"] },
+  { id:"k-project", q:"What are we doing in the lab this summer?",
+    keywords:["project","summer","lab","doing","goal","our","experiment"],
+    a:"In broad terms, you are testing whether phage display selected binders stick specifically to the Alzheimer's form of tau and not to normal tau. You will prepare reagents, run ELISA assays, build dilution curves, and repeat them so the result is trustworthy. Each of you owns a piece, and together it adds up to a specificity story you can present.",
+    papers:["op-thno22","op-art24","lm-immunoassay"], terms:["Phage display","ELISA","Specificity"] },
+
+  { id:"k-ad-what", q:"What is Alzheimer's disease?",
+    keywords:["alzheimer","alzheimers","disease","dementia","define"],
+    a:"Alzheimer's disease is the most common cause of dementia, a progressive loss of memory and thinking that eventually disrupts daily life. In the brain it is defined by two lesions: amyloid plaques outside neurons and tau tangles inside them. The biology begins years, even decades, before the first symptoms appear.",
+    papers:["np-overview","amy-25","np-jack24"], terms:["Dementia","Amyloid-beta","Neurofibrillary tangle (NFT)"] },
+  { id:"k-ad-cause", q:"What causes Alzheimer's disease?",
+    keywords:["cause","causes","origin","trigger","cascade"],
+    a:"The leading idea is the amyloid cascade hypothesis: buildup of amyloid-beta is an early trigger that sets off tau tangles, inflammation, and neuron loss, ending in dementia. It is supported by genetics but also debated, since clearing amyloid only modestly helps. Most researchers now see it as one important driver among several, including tau, the immune system, and aging.",
+    papers:["amy-25","amy-appraisal","tau-central"], terms:["Amyloid cascade hypothesis","Amyloid-beta","Tau"] },
+  { id:"k-dementia-vs-ad", q:"What is the difference between dementia and Alzheimer's?",
+    keywords:["difference","dementia","same","versus"],
+    a:"Dementia is the general term for a loss of memory and thinking severe enough to affect daily life. Alzheimer's is one specific disease that causes dementia, and the most common one, but not the only one. So all Alzheimer's leads to dementia, but not all dementia is Alzheimer's.",
+    papers:["np-overview"], terms:["Dementia","Mild cognitive impairment (MCI)"] },
+  { id:"k-treatments", q:"Is there a cure or treatment for Alzheimer's?",
+    keywords:["cure","treatment","treat","drug","drugs","medicine","lecanemab","donanemab","leqembi","kisunla"],
+    a:"There is no cure yet. Older drugs like donepezil and memantine ease symptoms for a while without changing the disease. The newer anti-amyloid antibodies, lecanemab in 2023 and donanemab in 2024, are the first approved drugs that modestly slow decline by clearing amyloid. Notice that these drugs are themselves antibodies, the same class of molecule you are selecting for.",
+    papers:["tx-lecanemab"], terms:["Anti-amyloid antibody","Immunotherapy","Cholinesterase inhibitor"] },
+
+  { id:"k-tau-what", q:"What is tau?",
+    keywords:["tau","microtubule","protein"],
+    a:"Tau is a protein whose normal job is to stabilize microtubules, the internal tracks that move cargo inside a neuron. In Alzheimer's, tau gets chemically modified, lets go of the microtubules, and clumps into tangles. So a helpful protein becomes a harmful one.",
+    papers:["tau-adv","tau-central"], terms:["Tau","Microtubule","Neurofibrillary tangle (NFT)"] },
+  { id:"k-ptau", q:"What is p-tau or phosphorylated tau?",
+    keywords:["ptau","phosphorylated","phosphorylation","217","181","phosphate"],
+    a:"Phosphorylated tau is tau with extra phosphate groups attached. Too many of them, called hyperphosphorylation, make tau release the microtubules and aggregate. Certain forms, especially p-tau217, rise early in the disease and can be measured in blood, which makes them powerful biomarkers.",
+    papers:["bm-ptau217","tau-adv"], terms:["Phosphorylated tau (p-tau)","Hyperphosphorylation","p-tau217"] },
+  { id:"k-nft", q:"What is a neurofibrillary tangle?",
+    keywords:["tangle","tangles","nft","neurofibrillary","filament"],
+    a:"A neurofibrillary tangle is a clump of misfolded tau inside a neuron, built from twisted fibers called paired helical filaments. Tangles are one of the two hallmark lesions of Alzheimer's. In 2017, cryo-electron microscopy revealed their exact atomic shape for the first time.",
+    papers:["tau-cryo","np-diagnosis"], terms:["Neurofibrillary tangle (NFT)","Paired helical filament (PHF)","Cryo-EM"] },
+  { id:"k-tau-spread", q:"How does tau pathology spread through the brain?",
+    keywords:["spread","spreading","prion","propagate","seed","travel"],
+    a:"Misfolded tau appears to act in a prion-like way: a bad copy can seed normal tau to misfold, and the pathology travels along connected neurons from one region to the next. This is why tangles follow an orderly path, captured by Braak staging, and why stopping the spread is a treatment goal.",
+    papers:["tau-spread","tau-central"], terms:["Prion-like spreading","Braak staging","Tau"] },
+
+  { id:"k-amyloid", q:"What is amyloid-beta?",
+    keywords:["amyloid","beta","abeta","plaque","plaques"],
+    a:"Amyloid-beta is a short sticky peptide snipped out of a larger protein called APP by enzymes named secretases. When the wrong cuts are made, amyloid-beta builds up and clumps into plaques outside neurons. Plaques are one of the two hallmark lesions of Alzheimer's, alongside tau tangles.",
+    papers:["amy-25"], terms:["Amyloid-beta","Amyloid precursor protein (APP)","Secretases"] },
+  { id:"k-cascade", q:"What is the amyloid cascade hypothesis?",
+    keywords:["cascade","hypothesis","theory","hardy","domino"],
+    a:"Proposed by Hardy and Higgins in 1992, it says amyloid-beta buildup is the first event that triggers tau tangles, cell death, and dementia, like the first domino in a chain. It has guided drug development for decades and is also debated, which makes it a great example of how science argues with its own best ideas.",
+    papers:["amy-25","amy-appraisal"], terms:["Amyloid cascade hypothesis","Amyloid-beta","Tau"] },
+  { id:"k-app", q:"What is APP and what are secretases?",
+    keywords:["app","precursor","secretase","secretases","gamma","cut","cleave"],
+    a:"APP, amyloid precursor protein, is a large protein in neuron membranes. Enzymes called secretases cut it. One pathway is harmless, but cutting by beta and gamma secretase releases amyloid-beta, the peptide that forms plaques. The presenilins are part of the gamma secretase machine, which is why their mutations cause inherited Alzheimer's.",
+    papers:["amy-25"], terms:["Amyloid precursor protein (APP)","Secretases","Presenilin"] },
+
+  { id:"k-biomarker", q:"What is a biomarker?",
+    keywords:["biomarker","marker","measure","indicator"],
+    a:"A biomarker is something you can measure that reflects what is happening inside the body. For Alzheimer's, that means amyloid and tau measured in spinal fluid, on a PET scan, or now in blood. Good biomarkers let doctors detect the disease earlier and let researchers track whether a treatment is working.",
+    papers:["bm-sysrev","bm-ptau217"], terms:["Biomarker","p-tau217","ATN framework"] },
+  { id:"k-bloodtest", q:"Is there a blood test for Alzheimer's?",
+    keywords:["blood","test","lumipulse","plasma","detection","detect"],
+    a:"Yes, recently. In May 2025 the FDA cleared the first blood test, the Lumipulse pTau217 to amyloid ratio, to help diagnose Alzheimer's. Blood is far cheaper and easier than a spinal tap or PET scan, which could make diagnosis much more accessible. Better, more specific binders, the kind you are selecting, are how such tests keep improving.",
+    papers:["bm-ptau217","bm-guideline"], terms:["Biomarker","p-tau217","Cerebrospinal fluid (CSF)"] },
+  { id:"k-csf-pet-blood", q:"What is the difference between CSF, PET, and blood tests?",
+    keywords:["csf","pet","blood","spinal","scan","imaging","compare"],
+    a:"All three measure Alzheimer's biology in different ways. CSF comes from a spinal tap and gives direct chemistry but is invasive. PET is a brain scan that shows amyloid or tau but is expensive. Blood tests are the newest, cheapest, and least invasive, and they now agree well with the other two.",
+    papers:["bm-sysrev","bm-guideline"], terms:["Cerebrospinal fluid (CSF)","PET imaging","Biomarker"] },
+
+  { id:"k-diagnosis", q:"How is Alzheimer's diagnosed?",
+    keywords:["diagnose","diagnosis","diagnosed","criteria","abc"],
+    a:"Traditionally by symptoms plus ruling out other causes, with certainty only at autopsy using the ABC scoring of amyloid, Braak tangle stage, and plaque density. The 2024 revised criteria shift toward defining the disease biologically, using biomarkers, even before symptoms. That is a big change in how the field thinks about the disease.",
+    papers:["np-diagnosis","np-jack24","np-overview"], terms:["ABC score","Braak staging","ATN framework"] },
+  { id:"k-braak", q:"What is Braak staging?",
+    keywords:["braak","stage","staging","progression"],
+    a:"Braak staging, introduced by Heiko and Eva Braak in 1991, describes how far tau tangles have spread through the brain, from stage I to VI. Tangles start in the entorhinal cortex, move into the hippocampus and limbic areas, and finally reach the wider cortex. Higher stages match more severe disease.",
+    papers:["np-diagnosis"], terms:["Braak staging","Entorhinal cortex","Neurofibrillary tangle (NFT)"] },
+
+  { id:"k-hippocampus", q:"What does the hippocampus do, and why does it matter in AD?",
+    keywords:["hippocampus","memory","shrink"],
+    a:"The hippocampus is a seahorse-shaped structure deep in the temporal lobe that builds new memories. It is hit early in Alzheimer's and shrinks, which is why forming new memories fails before old ones fade. Its decline is one of the earliest signs of the disease.",
+    papers:["np-diagnosis"], terms:["Hippocampus","Entorhinal cortex","Atrophy"] },
+  { id:"k-where-start", q:"Where in the brain does Alzheimer's start?",
+    keywords:["where","start","begin","begins","first","entorhinal","locus"],
+    a:"Tau tangles usually appear first in the entorhinal cortex, the memory gateway, and some research points even earlier to the locus coeruleus in the brainstem. From there pathology spreads outward into the hippocampus and the rest of the cortex. The disease follows a path rather than striking everywhere at once.",
+    papers:["tau-spread","np-diagnosis"], terms:["Entorhinal cortex","Locus coeruleus","Braak staging"] },
+  { id:"k-cholinergic", q:"What is the cholinergic hypothesis?",
+    keywords:["cholinergic","acetylcholine","basal","forebrain","meynert","donepezil"],
+    a:"In the 1970s researchers found a big loss of the messenger acetylcholine in the Alzheimer's brain, made by neurons in the basal forebrain. The cholinergic hypothesis says this loss drives many symptoms. It led to the first drugs, the cholinesterase inhibitors like donepezil, which boost acetylcholine to ease symptoms.",
+    papers:[], terms:["Cholinergic hypothesis","Acetylcholine","Basal forebrain"] },
+
+  { id:"k-apoe", q:"What is APOE4?",
+    keywords:["apoe","apoe4","e4","risk"],
+    a:"APOE is a gene involved in moving fats around the body. Its e4 version is the strongest common genetic risk factor for the usual late-onset Alzheimer's. Having it raises risk but does not guarantee disease, and many people with Alzheimer's do not carry it.",
+    papers:[], terms:["APOE / APOE4","Amyloid-beta"] },
+  { id:"k-genetics", q:"Is Alzheimer's genetic or inherited?",
+    keywords:["genetic","inherited","heredity","family","presenilin","gene","down","syndrome"],
+    a:"Mostly it is not simply inherited. The common late-onset form is shaped by risk genes like APOE4 plus age and lifestyle. A rare early-onset form is directly inherited through mutations in APP or the presenilin genes. People with Down syndrome, who carry an extra copy of the APP gene, also reliably develop the pathology.",
+    papers:[], terms:["APOE / APOE4","Presenilin","Amyloid precursor protein (APP)"] },
+
+  { id:"k-microglia", q:"What are microglia and how do they relate to AD?",
+    keywords:["microglia","immune","inflammation","neuroinflammation","glia"],
+    a:"Microglia are the brain's resident immune cells. They clean up debris and can wall off plaques, but when they stay overactivated they drive harmful neuroinflammation. The balance between helpful and harmful microglia is a hot area of Alzheimer's research.",
+    papers:["ni-micro","ni-trem2"], terms:["Microglia","TREM2"] },
+  { id:"k-trem2", q:"What is TREM2?",
+    keywords:["trem2","receptor","myeloid"],
+    a:"TREM2 is a receptor on microglia that helps them sense and respond to damage. Certain rare variants of the TREM2 gene raise Alzheimer's risk, which is strong evidence that the immune system is part of the disease, not just a bystander.",
+    papers:["ni-trem2"], terms:["TREM2","Microglia"] },
+
+  { id:"k-tau-vs-amyloid", q:"What is the difference between tau and amyloid?",
+    keywords:["tau","amyloid","difference","versus","tangle","plaque","both"],
+    a:"Both are proteins that misbehave in Alzheimer's, but they sit in different places. Amyloid-beta builds plaques outside neurons. Tau builds tangles inside neurons. Amyloid spreads diffusely and tracks weakly with symptoms, while tau spreads along a clear path and tracks more tightly with how bad the dementia is.",
+    papers:["tau-central","amy-25"], terms:["Amyloid-beta","Tau","Braak staging"] },
+  { id:"k-reproducibility", q:"Why do scientists repeat experiments?",
+    keywords:["repeat","replicate","replicates","reproducibility","controls","rigor"],
+    a:"Because a single result can be a fluke. Repeating an experiment, with proper controls, shows whether the effect is real and not noise or a mistake. A famous survey found that much published science does not replicate, which is exactly why your careful notebook, replicates, and controls matter so much.",
+    papers:["lm-repro","lm-immunoassay"], terms:["Reproducibility","Specificity","Antibody validation"] },
+  { id:"k-mci", q:"What is mild cognitive impairment?",
+    keywords:["mci","mild","cognitive","impairment","early"],
+    a:"Mild cognitive impairment, or MCI, is a noticeable decline in memory or thinking that is not yet bad enough to disrupt independent daily life. It can be an early stage on the way to Alzheimer's, which is why the new drugs are aimed at this early window.",
+    papers:["np-jack24","tx-lecanemab"], terms:["Mild cognitive impairment (MCI)","Preclinical AD","Dementia"] },
+  { id:"k-cryo", q:"What is cryo-EM and why is it important here?",
+    keywords:["cryo","cryoem","electron","microscopy","structure"],
+    a:"Cryo-electron microscopy flash freezes molecules and images them at near-atomic detail. In 2017 it revealed the exact structure of tau filaments from an Alzheimer's brain. Knowing that shape helps design better tracers, drugs, and binders that fit the disease form of tau.",
+    papers:["tau-cryo"], terms:["Cryo-EM","Paired helical filament (PHF)","Neurofibrillary tangle (NFT)"] },
+  { id:"k-aria", q:"What is ARIA?",
+    keywords:["aria","abnormalities","swelling","bleed","side","effect"],
+    a:"ARIA stands for amyloid-related imaging abnormalities, brain swelling or tiny bleeds that can show up on scans in people taking anti-amyloid antibody drugs. Most cases are mild, but it is why these drugs require careful MRI monitoring. It is a reminder that even targeted therapies carry tradeoffs.",
+    papers:["tx-lecanemab"], terms:["ARIA","Anti-amyloid antibody","Immunotherapy"] }
+];
+
+/* ============================== QUIZ BANK ============================== */
+const QUIZ = [
+  { cat:"Phage Display", q:"In phage display, what links the protein you select to the information you need to identify it?",
+    opts:["The protein sits on the phage that also carries its gene","A fluorescent dye","A barcode printed on the plate","The researcher's notebook"], answer:0,
+    explain:"The power of phage display is that the displayed protein and its own gene travel together inside the same phage, so finding a binder tells you its sequence." },
+  { cat:"Phage Display", q:"What is the goal of each round of biopanning?",
+    opts:["To kill the bacteria","To enrich the pool for phages that bind your target","To add more random proteins","To change the target"], answer:1,
+    explain:"Each round washes away non-binders and keeps binders, concentrating the best ones, like panning for gold." },
+  { cat:"Phage Display", q:"Who shared the 2018 Nobel Prize in Chemistry for phage display?",
+    opts:["Alois Alzheimer","George Smith","Heiko Braak","John Hardy"], answer:1,
+    explain:"George Smith invented phage display and shared the 2018 Nobel Prize with Greg Winter." },
+  { cat:"Phage Display", q:"An epitope is best described as:",
+    opts:["A type of virus","The exact small region a binder attaches to","A staining method","A brain region"], answer:1,
+    explain:"The epitope is the precise patch on a target that an antibody or peptide recognizes." },
+
+  { cat:"Tau", q:"What is tau's normal job in a healthy neuron?",
+    opts:["Carry oxygen","Stabilize microtubules","Produce acetylcholine","Form plaques"], answer:1,
+    explain:"Tau stabilizes microtubules, the internal transport tracks of a neuron." },
+  { cat:"Tau", q:"What change makes tau detach and clump in Alzheimer's?",
+    opts:["It is frozen","It becomes hyperphosphorylated","It loses all phosphate","It is cut by secretases"], answer:1,
+    explain:"Too many phosphate groups (hyperphosphorylation) make tau release microtubules and aggregate." },
+  { cat:"Tau", q:"Neurofibrillary tangles are found where?",
+    opts:["Outside neurons","Inside neurons","Only in the blood","Only in the ventricles"], answer:1,
+    explain:"Tangles are inside neurons. Plaques, made of amyloid, are outside them." },
+  { cat:"Tau", q:"Which form of tau is currently a leading blood biomarker for Alzheimer's?",
+    opts:["p-tau217","Vitamin D","Hemoglobin","Insulin"], answer:0,
+    explain:"p-tau217 rises early and tracks Alzheimer's pathology well in blood." },
+
+  { cat:"Amyloid", q:"Amyloid plaques are made mostly of which peptide?",
+    opts:["Tau","Amyloid-beta","Insulin","Collagen"], answer:1,
+    explain:"Plaques are aggregates of amyloid-beta, which is cut from the larger APP protein." },
+  { cat:"Amyloid", q:"The amyloid cascade hypothesis proposes that:",
+    opts:["Tau comes first and causes amyloid","Amyloid-beta buildup is an early trigger of the disease","Infections cause all Alzheimer's","Plaques are harmless"], answer:1,
+    explain:"Hardy and Higgins (1992) proposed amyloid-beta buildup as the initiating event in the disease." },
+  { cat:"Amyloid", q:"Amyloid-beta is produced when APP is cut by:",
+    opts:["Beta and gamma secretase","DNA polymerase","Calpain only","Microglia"], answer:0,
+    explain:"Cleavage of APP by beta- and gamma-secretase releases the amyloid-beta peptide." },
+
+  { cat:"Biomarkers", q:"A biomarker is:",
+    opts:["A type of neuron","Something measurable that reflects body biology","A brain scan machine","A gene only"], answer:1,
+    explain:"Biomarkers are measurable indicators, found in blood, spinal fluid, or on scans." },
+  { cat:"Biomarkers", q:"In 2025 the FDA cleared the first what for Alzheimer's?",
+    opts:["Cure","Blood test","Vaccine","Brain transplant"], answer:1,
+    explain:"The Lumipulse pTau217 to amyloid ratio became the first FDA-cleared blood test in May 2025." },
+  { cat:"Biomarkers", q:"The ATN framework classifies Alzheimer's by:",
+    opts:["Age, Tau, Nutrition","Amyloid, Tau, Neurodegeneration","Anatomy, Treatment, Numbers","Antibodies, Tangles, Neurons"], answer:1,
+    explain:"ATN stands for Amyloid, Tau, and Neurodegeneration biomarkers." },
+
+  { cat:"Neuropathology", q:"Braak staging tracks the spread of:",
+    opts:["Amyloid in blood vessels","Tau tangles through the brain","Microglia","Ventricle size"], answer:1,
+    explain:"Braak stages I to VI describe how far tau tangles have spread." },
+  { cat:"Neuropathology", q:"The ABC pathology score stands for:",
+    opts:["Amyloid, Braak stage, CERAD plaque score","Age, Brain, Cognition","Antibody, Biomarker, Cell","Axon, Ball, Cortex"], answer:0,
+    explain:"A is amyloid, B is Braak tangle stage, C is the CERAD neuritic plaque score." },
+  { cat:"Neuropathology", q:"Who first described the disease along with its plaques and tangles?",
+    opts:["Alois Alzheimer in 1906","George Smith in 2018","Heiko Braak in 1991","Dale Schenk in 1999"], answer:0,
+    explain:"Alois Alzheimer described the case of Auguste Deter and her brain lesions in 1906." },
+
+  { cat:"Anatomy", q:"Which region is usually affected first and is key for forming new memories?",
+    opts:["Cerebellum","Entorhinal cortex and hippocampus","Occipital lobe","Brainstem motor area"], answer:1,
+    explain:"Tau tangles often start in the entorhinal cortex, right next to the memory-forming hippocampus." },
+  { cat:"Anatomy", q:"The basal forebrain is the brain's main source of:",
+    opts:["Dopamine","Acetylcholine","Insulin","Amyloid"], answer:1,
+    explain:"The nucleus basalis of Meynert supplies acetylcholine; its loss underlies the cholinergic hypothesis." },
+  { cat:"Anatomy", q:"Enlarged ventricles on a brain scan usually indicate:",
+    opts:["More neurons","Brain tissue loss, or atrophy","Better memory","A blood test result"], answer:1,
+    explain:"As tissue is lost, the fluid-filled ventricles expand, a visible sign of atrophy." },
+
+  { cat:"Genetics", q:"The strongest common genetic risk factor for late-onset Alzheimer's is:",
+    opts:["APOE4","Tau gene deletion","BRCA1","Insulin gene"], answer:0,
+    explain:"The APOE e4 variant raises risk for the common late-onset form, though it is not a guarantee." },
+  { cat:"Genetics", q:"Why do people with Down syndrome reliably develop Alzheimer's pathology?",
+    opts:["An extra copy of the APP gene on chromosome 21","They lack tau","Too much acetylcholine","A virus"], answer:0,
+    explain:"An extra chromosome 21 means an extra APP gene, so more amyloid-beta accumulates over time." },
+
+  { cat:"Microglia", q:"Microglia are the brain's:",
+    opts:["Memory cells","Resident immune cells","Blood vessels","Electrical wires"], answer:1,
+    explain:"Microglia are immune cells that can both protect the brain and, when overactive, inflame it." },
+
+  { cat:"Treatments", q:"Lecanemab and donanemab work by:",
+    opts:["Replacing neurons","Clearing amyloid with antibodies","Adding tau","Boosting acetylcholine"], answer:1,
+    explain:"They are anti-amyloid antibodies that clear amyloid and modestly slow decline." },
+  { cat:"Treatments", q:"A point about lecanemab that connects to our lab is that the drug itself is:",
+    opts:["A small sugar","An antibody","A virus","A metal"], answer:1,
+    explain:"Lecanemab is a monoclonal antibody, the same class of molecule that phage display selects." },
+
+  { cat:"Methods", q:"Why run replicates and controls?",
+    opts:["To use more reagents","To tell a real effect from noise or error","To finish faster","They are not needed"], answer:1,
+    explain:"Replicates and controls are how you know a result is trustworthy and not a fluke." },
+  { cat:"Methods", q:"The specificity of a binder means it:",
+    opts:["Binds many things strongly","Binds only the intended target","Is very large","Glows in the dark"], answer:1,
+    explain:"Specificity is binding the target and not the look-alikes, the core aim of your project." }
+];
+
+/* app */
 /* ============================================================================
    NeuroNauts Reading Room  ::  APP LOGIC  (vanilla JS, no build step)
 ============================================================================ */
@@ -794,11 +1138,15 @@ const GLOSSARY = [
   ];
 
   let scholar = null, selectedName = null, libFilter = "all", libQuery = "";
+  let quizCat = "all", quiz = null;
 
   /* ---------- storage ---------- */
   function store() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
   function save(d) { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) {} }
-  function userData() { const d = store(); d[scholar] = d[scholar] || { read: {} }; return d; }
+  function userData() { const d = store(); d[scholar] = d[scholar] || { read: {}, quizBest: 0 }; return d; }
+  function paperById(id) { return PAPERS.find(p => p.id === id); }
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
   /* ---------- login ---------- */
   function buildLogin() {
@@ -806,11 +1154,7 @@ const GLOSSARY = [
     CONFIG.scholars.forEach(name => {
       const b = document.createElement("button");
       b.textContent = name;
-      b.onclick = () => {
-        selectedName = name;
-        $$("#who button").forEach(x => x.classList.remove("sel"));
-        b.classList.add("sel"); $("#err").textContent = "";
-      };
+      b.onclick = () => { selectedName = name; $$("#who button").forEach(x => x.classList.remove("sel")); b.classList.add("sel"); $("#err").textContent = ""; };
       who.appendChild(b);
     });
     $("#brand-cohort").textContent = CONFIG.cohort;
@@ -821,18 +1165,14 @@ const GLOSSARY = [
   }
   function attempt() {
     if (!selectedName) { $("#err").textContent = "Pick your name first, explorer."; return; }
-    if ($("#pass").value.trim() !== CONFIG.passcode) {
-      $("#err").textContent = "That passcode does not match. Ask " + CONFIG.mentor + "."; return;
-    }
-    scholar = selectedName;
-    const d = store(); d._session = scholar; save(d);
-    enterApp();
+    if ($("#pass").value.trim() !== CONFIG.passcode) { $("#err").textContent = "That passcode does not match. Ask " + CONFIG.mentor + "."; return; }
+    scholar = selectedName; const d = store(); d._session = scholar; save(d); enterApp();
   }
   function enterApp() {
     $("#login").style.display = "none";
     $("#app").style.display = "block";
     $("#greet-name").textContent = scholar;
-    buildLibrary(); buildHistory(); buildAnatomy(); buildGlossary();
+    buildLibrary(); buildAsk(); buildQuiz(); buildHistory(); buildAnatomy(); buildGlossary();
     showView("library");
   }
   function logout() { const d = store(); delete d._session; save(d); location.reload(); }
@@ -867,12 +1207,8 @@ const GLOSSARY = [
     if (libQuery) list = list.filter(p => (p.title + " " + p.source + " " + p.why + " " + p.cat).toLowerCase().includes(libQuery));
     $("#read-count").textContent = PAPERS.filter(p => ud[scholar].read[p.id]).length + " of " + PAPERS.length + " read";
     if (!list.length) { wrap.innerHTML = '<p class="sub">No papers match that search.</p>'; return; }
-    const groups = {};
-    list.forEach(p => { (groups[p.cat] = groups[p.cat] || []).push(p); });
-    const ordered = Object.keys(groups).sort((a, b) => {
-      const ia = LIB_ORDER.indexOf(a), ib = LIB_ORDER.indexOf(b);
-      return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
-    });
+    const groups = {}; list.forEach(p => { (groups[p.cat] = groups[p.cat] || []).push(p); });
+    const ordered = Object.keys(groups).sort((a, b) => { const ia = LIB_ORDER.indexOf(a), ib = LIB_ORDER.indexOf(b); return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib); });
     let html = "";
     ordered.forEach(cat => {
       html += '<div class="cat-group"><div class="cat-title">' + cat + ' <span class="n">' + groups[cat].length + ' papers</span></div>';
@@ -883,8 +1219,7 @@ const GLOSSARY = [
           '<label class="check read-toggle" title="Mark as read"><input type="checkbox" data-read="' + p.id + '" ' + (read ? "checked" : "") + '><span class="box">&#10003;</span></label>' +
           '<div class="info"><div class="ptitle"><a href="' + p.url + '" target="_blank" rel="noopener">' + p.title + '</a></div>' +
           '<div class="psrc">' + p.source + '</div><div class="pwhy">' + p.why + '</div>' +
-          '<div class="ptags"><span class="lvl ' + p.level + '">' + lvl + '</span>' +
-          '<a class="open-link" href="' + p.url + '" target="_blank" rel="noopener">open paper &rarr;</a></div></div></div>';
+          '<div class="ptags"><span class="lvl ' + p.level + '">' + lvl + '</span><a class="open-link" href="' + p.url + '" target="_blank" rel="noopener">open paper &rarr;</a></div></div></div>';
       });
       html += "</div>";
     });
@@ -898,62 +1233,197 @@ const GLOSSARY = [
     }));
   }
 
+  /* ---------- ASK ME (built-in tutor) ---------- */
+  const STOP = new Set(["a","an","the","is","are","was","were","of","in","to","on","for","and","or","do","does","did","how","what","whats","why","where","when","which","who","me","my","you","your","it","its","this","that","these","those","with","as","at","be","can","could","tell","explain","define","meaning","mean","about","there","they","them","i","we","our","us","help","please","vs"]);
+  const SYN = { alzheimers:["alzheimer"], ad:["alzheimer"], tangles:["tangle","nft"], tangle:["nft"], plaques:["plaque","amyloid"], plaque:["amyloid"], abeta:["amyloid","beta"], ptau:["phosphorylated","tau"], phospho:["phosphorylated"], antibodies:["antibody"], drugs:["drug","treatment"], medicine:["treatment","drug"], cures:["cure","treatment"], cells:["cell"], neurons:["neuron"], proteins:["protein"] };
+
+  function tokenize(str) {
+    let s = String(str).toLowerCase();
+    s = s.replace(/p[\s-]?tau/g, "ptau").replace(/\ba[\s-]?beta\b/g, "abeta");
+    const raw = s.replace(/[^a-z0-9\s]/g, " ").split(/\s+/).filter(Boolean);
+    const out = [];
+    raw.forEach(w => {
+      if (w.length < 2 && !/[0-9]/.test(w)) return;
+      if (!STOP.has(w)) out.push(w);
+      if (SYN[w]) SYN[w].forEach(s => out.push(s));
+    });
+    return out;
+  }
+  function scoreEntry(entry, qTokens) {
+    const kw = new Set(entry.keywords.map(k => k.toLowerCase()));
+    const title = new Set(tokenize(entry.q));
+    const body = new Set(tokenize(entry.a));
+    let score = 0;
+    qTokens.forEach(t => { if (kw.has(t)) score += 3; else if (title.has(t)) score += 2; else if (body.has(t)) score += 1; });
+    return score;
+  }
+  function answerQuestion(text) {
+    const out = $("#ask-answer");
+    const qTokens = tokenize(text);
+    if (!qTokens.length) { out.innerHTML = '<p class="ask-fallback">Type a question about phage display, tau, amyloid, biomarkers, the brain, or our project, and I will do my best.</p>'; return; }
+    const ranked = KB.map(e => ({ e, s: scoreEntry(e, qTokens) })).filter(x => x.s > 0).sort((a, b) => b.s - a.s);
+    if (!ranked.length || ranked[0].s < 2) {
+      out.innerHTML = '<div class="ask-card weak"><p class="ask-fallback">I do not have a built-in note that matches that closely. Try rephrasing, or pick one of these:</p>' +
+        '<div class="ask-chips">' + sampleChips() + '</div>' +
+        '<p class="ask-note">You can also browse the Paper Library or Glossary tabs, or ask your mentors.</p></div>';
+      wireChips(out);
+      return;
+    }
+    const main = ranked[0].e;
+    const related = ranked.slice(1, 3).map(x => x.e).filter(e => true);
+    out.innerHTML = renderAnswer(main, true) + (related.length ? '<div class="ask-more-h">You might also explore</div>' + related.map(e => renderAnswer(e, false)).join("") : "");
+    wireTermChips(out);
+  }
+  function renderAnswer(e, primary) {
+    const papers = (e.papers || []).map(id => paperById(id)).filter(Boolean);
+    const reading = papers.length ? '<div class="ask-reading"><span class="ask-lbl">Related reading</span>' +
+      papers.map(p => '<a href="' + p.url + '" target="_blank" rel="noopener">' + p.title + '</a>').join("") + '</div>' : "";
+    const terms = (e.terms || []).length ? '<div class="ask-terms">' + e.terms.map(t => '<button class="term-chip" data-term="1">' + esc(t) + '</button>').join("") + '</div>' : "";
+    return '<div class="ask-card ' + (primary ? "primary" : "secondary") + '">' +
+      '<div class="ask-q">' + esc(e.q) + '</div>' +
+      '<p class="ask-a">' + e.a + '</p>' + terms + reading + '</div>';
+  }
+  function sampleChips() {
+    return shuffle(KB).slice(0, 6).map(e => '<button class="ask-chip">' + esc(e.q) + '</button>').join("");
+  }
+  function wireChips(scope) {
+    $$(".ask-chip", scope).forEach(b => b.onclick = () => { $("#ask-input").value = b.textContent; answerQuestion(b.textContent); });
+  }
+  function wireTermChips(scope) {
+    $$(".term-chip", scope).forEach(b => b.onclick = () => showView("glossary"));
+  }
+  function buildAsk() {
+    $("#ask-examples").innerHTML = sampleChips();
+    wireChips($("#ask-examples"));
+    $("#ask-go").onclick = () => answerQuestion($("#ask-input").value);
+    $("#ask-input").addEventListener("keydown", e => { if (e.key === "Enter") answerQuestion($("#ask-input").value); });
+    $("#ask-answer").innerHTML = "";
+  }
+
+  /* ---------- QUIZ ---------- */
+  function buildQuiz() {
+    const cats = ["all", ...Array.from(new Set(QUIZ.map(q => q.cat)))];
+    const best = userData().quizBest || 0;
+    $("#quiz").innerHTML =
+      '<div class="quiz-start">' +
+        '<p class="sub">Pick a topic (or all), then take a short quiz. You get instant feedback and an explanation on every question. Missing one is how you learn it.</p>' +
+        (best ? '<div class="quiz-best mono">Your best so far: ' + best + '%</div>' : '') +
+        '<div class="filters" id="quiz-cats">' + cats.map(c => '<button class="' + (c === quizCat ? "on" : "") + '" data-qc="' + esc(c) + '">' + (c === "all" ? "All topics" : c) + '</button>').join("") + '</div>' +
+        '<button class="launch quiz-launch" id="quiz-start-btn">Start quiz &#129504;</button>' +
+      '</div>';
+    $$("#quiz-cats button").forEach(b => b.onclick = () => { quizCat = b.dataset.qc; $$("#quiz-cats button").forEach(x => x.classList.remove("on")); b.classList.add("on"); });
+    $("#quiz-start-btn").onclick = startQuiz;
+  }
+  function startQuiz() {
+    let pool = QUIZ.slice();
+    if (quizCat !== "all") pool = pool.filter(q => q.cat === quizCat);
+    pool = shuffle(pool).slice(0, Math.min(10, pool.length)).map(q => {
+      const opts = shuffle(q.opts.map((t, i) => ({ t, correct: i === q.answer })));
+      return { cat: q.cat, q: q.q, explain: q.explain, opts, correctIdx: opts.findIndex(o => o.correct) };
+    });
+    quiz = { pool, idx: 0, score: 0, missed: [] };
+    renderQuestion();
+  }
+  function renderQuestion() {
+    const q = quiz.pool[quiz.idx];
+    $("#quiz").innerHTML =
+      '<div class="quiz-run">' +
+        '<div class="quiz-bar"><div class="quiz-bar-meta mono"><span>Question ' + (quiz.idx + 1) + ' of ' + quiz.pool.length + '</span><span>Score ' + quiz.score + '</span></div>' +
+        '<div class="bar"><i style="width:' + Math.round((quiz.idx / quiz.pool.length) * 100) + '%"></i></div></div>' +
+        '<div class="quiz-cat mono">' + esc(q.cat) + '</div>' +
+        '<div class="quiz-q">' + esc(q.q) + '</div>' +
+        '<div class="quiz-opts" id="quiz-opts">' +
+          q.opts.map((o, i) => '<button class="quiz-opt" data-i="' + i + '">' + esc(o.t) + '</button>').join("") +
+        '</div>' +
+        '<div class="quiz-feed" id="quiz-feed"></div>' +
+      '</div>';
+    $$("#quiz-opts .quiz-opt").forEach(btn => btn.onclick = () => pickAnswer(parseInt(btn.dataset.i, 10)));
+  }
+  function pickAnswer(i) {
+    const q = quiz.pool[quiz.idx];
+    const correct = i === q.correctIdx;
+    if (correct) quiz.score++; else quiz.missed.push(q);
+    $$("#quiz-opts .quiz-opt").forEach((btn, bi) => {
+      btn.disabled = true;
+      if (bi === q.correctIdx) btn.classList.add("right");
+      else if (bi === i) btn.classList.add("wrong");
+    });
+    $("#quiz-feed").innerHTML =
+      '<div class="feed-line ' + (correct ? "ok" : "no") + '">' + (correct ? "Correct" : "Not quite") + '</div>' +
+      '<p class="feed-explain">' + esc(q.explain) + '</p>' +
+      '<button class="launch quiz-next" id="quiz-next">' + (quiz.idx + 1 < quiz.pool.length ? "Next question &rarr;" : "See results") + '</button>';
+    $("#quiz-next").onclick = () => { quiz.idx++; if (quiz.idx < quiz.pool.length) renderQuestion(); else finishQuiz(); };
+  }
+  function finishQuiz() {
+    const pct = Math.round((quiz.score / quiz.pool.length) * 100);
+    const d = userData(); if (pct > (d[scholar].quizBest || 0)) { d[scholar].quizBest = pct; save(d); }
+    let msg;
+    if (pct === 100) msg = "Perfect run. You have these fundamentals down cold.";
+    else if (pct >= 80) msg = "Strong work. You clearly know this material.";
+    else if (pct >= 60) msg = "Good progress. Review the ones you missed and run it again.";
+    else msg = "Every expert started here. Read the explanations below, then try again. You will climb fast.";
+    let review = "";
+    if (quiz.missed.length) {
+      review = '<div class="quiz-review"><div class="ask-more-h">Worth another look</div>' +
+        quiz.missed.map(q => {
+          const right = q.opts.find(o => o.correct).t;
+          return '<div class="rev-item"><div class="rev-q">' + esc(q.q) + '</div>' +
+            '<div class="rev-a"><b>Answer:</b> ' + esc(right) + '</div>' +
+            '<div class="rev-e">' + esc(q.explain) + '</div></div>';
+        }).join("") + '</div>';
+    }
+    $("#quiz").innerHTML =
+      '<div class="quiz-result">' +
+        '<div class="quiz-score mono">' + quiz.score + ' / ' + quiz.pool.length + '</div>' +
+        '<div class="quiz-pct">' + pct + '%</div>' +
+        '<p class="quiz-msg">' + msg + '</p>' +
+        '<button class="launch" id="quiz-again">Try again &#8635;</button>' +
+        review +
+      '</div>';
+    $("#quiz-again").onclick = buildQuiz;
+  }
+
   /* ---------- history ---------- */
   function buildHistory() {
-    const wrap = $("#history");
-    wrap.innerHTML = HISTORY.map(h =>
-      '<div class="tl-item">' +
-        '<div class="tl-marker"><span class="tl-dot ' + h.era + '"></span></div>' +
-        '<div class="tl-card">' +
-          '<div class="tl-year mono">' + h.year + '</div>' +
-          '<div class="tl-title">' + h.title + ' <span class="era-tag ' + h.era + '">' + eraLabel(h.era) + '</span></div>' +
-          '<p class="tl-text">' + h.text + '</p>' +
-        '</div>' +
-      '</div>').join("");
+    $("#history").innerHTML = HISTORY.map(h =>
+      '<div class="tl-item"><div class="tl-marker"><span class="tl-dot ' + h.era + '"></span></div>' +
+      '<div class="tl-card"><div class="tl-year mono">' + h.year + '</div>' +
+      '<div class="tl-title">' + h.title + ' <span class="era-tag ' + h.era + '">' + eraLabel(h.era) + '</span></div>' +
+      '<p class="tl-text">' + h.text + '</p></div></div>').join("");
   }
   function eraLabel(e) {
     return { discovery:"Discovery", pathology:"Neuropathology", clinical:"Clinical", biochem:"Biochemistry",
-      molecules:"Molecules", genetics:"Genetics", theory:"Theory", treatment:"Treatment",
-      imaging:"Imaging", biomarker:"Biomarker" }[e] || e;
+      molecules:"Molecules", genetics:"Genetics", theory:"Theory", treatment:"Treatment", imaging:"Imaging", biomarker:"Biomarker" }[e] || e;
   }
 
   /* ---------- anatomy ---------- */
   function buildAnatomy() {
-    const wrap = $("#anatomy-cards");
-    wrap.innerHTML = ANATOMY.map(a =>
-      '<button class="anat-card" data-region="' + a.id + '">' +
-        '<div class="anat-name">' + a.name + ' <span class="anat-tag">' + a.tag + '</span></div>' +
-        '<div class="anat-role">' + a.role + '</div>' +
-        '<div class="anat-ad"><b>In Alzheimer\u2019s:</b> ' + a.ad + '</div>' +
-      '</button>').join("");
+    $("#anatomy-cards").innerHTML = ANATOMY.map(a =>
+      '<button class="anat-card" data-region="' + a.id + '"><div class="anat-name">' + a.name + ' <span class="anat-tag">' + a.tag + '</span></div>' +
+      '<div class="anat-role">' + a.role + '</div><div class="anat-ad"><b>In Alzheimer\u2019s:</b> ' + a.ad + '</div></button>').join("");
     $$(".anat-card").forEach(card => card.addEventListener("click", () => {
       const id = card.dataset.region;
       $$(".anat-card").forEach(c => c.classList.toggle("active", c === card));
       const svg = $("#brain-svg");
       if (svg) {
         $$("[data-r]", svg).forEach(el => el.classList.remove("flash"));
-        const target = svg.querySelector('[data-r="' + id + '"]');
-        if (target) { void target.getBoundingClientRect(); target.classList.add("flash"); }
+        const t = svg.querySelector('[data-r="' + id + '"]');
+        if (t) { void t.getBoundingClientRect(); t.classList.add("flash"); }
       }
     }));
   }
 
-  /* ---------- glossary (grouped) ---------- */
+  /* ---------- glossary ---------- */
   function buildGlossary() {
-    const wrap = $("#glossary");
-    const groups = {};
-    GLOSSARY.forEach(g => { (groups[g.cat] = groups[g.cat] || []).push(g); });
-    const ordered = Object.keys(groups).sort((a, b) => {
-      const ia = GLOSSARY_ORDER.indexOf(a), ib = GLOSSARY_ORDER.indexOf(b);
-      return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
-    });
+    const groups = {}; GLOSSARY.forEach(g => { (groups[g.cat] = groups[g.cat] || []).push(g); });
+    const ordered = Object.keys(groups).sort((a, b) => { const ia = GLOSSARY_ORDER.indexOf(a), ib = GLOSSARY_ORDER.indexOf(b); return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib); });
     let html = "";
     ordered.forEach(cat => {
       html += '<div class="gloss-group"><div class="cat-title">' + cat + ' <span class="n">' + groups[cat].length + ' terms</span></div><dl class="glossary">';
       groups[cat].forEach(g => { html += '<div class="gloss"><dt>' + g.term + '</dt><dd>' + g.def + '</dd></div>'; });
       html += '</dl></div>';
     });
-    wrap.innerHTML = html;
+    $("#glossary").innerHTML = html;
   }
 
   /* ---------- boot ---------- */
